@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Tool Use and Function Calling</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Tool Use and Function Calling</h1>
+
+<h2>Expanding Agent Capabilities</h2>
+<p>
+    LLMs are powerful reasoning engines, but they are isolated from the world. They cannot access the internet, query a live database, or calculate complex math natively with high precision.
+    <strong>Tool Use</strong> (often called Function Calling) bridges this gap.
+</p>
+
+<h2>How Function Calling Works</h2>
+<p>
+    AutoGen leverages the native function calling capabilities of models like GPT-4. The process involves two steps:
+</p>
+<ol>
+    <li><strong>Registration:</strong> You define a Python function (e.g., `fetch_weather(city)`) and register it with the agents.</li>
+    <li><strong>Execution:</strong>
+        <ul>
+            <li>The <strong>AssistantAgent</strong> (LLM) sees the tool definition. When asked "What's the weather in NY?", it returns a structured JSON payload: <code>{"function": "fetch_weather", "args": {"city": "NY"}}</code>.</li>
+            <li>The <strong>UserProxyAgent</strong> (Executor) receives this, executes the actual Python function, and returns the result ("25°C, Sunny") to the Assistant.</li>
+            <li>The Assistant then uses this data to answer the user naturally.</li>
+        </ul>
+    </li>
+</ol>
+
+<h2>Registering Tools</h2>
+<p>
+    AutoGen provides a high-level decorator <code>@user_proxy.register_for_execution()</code> and <code>@assistant.register_for_llm()</code> to simplify this wiring.
+</p>
+<p>
+    <strong>Best Practices for Tool Definitions:</strong>
+</p>
+<ul>
+    <li><strong>Type Hints:</strong> Always use Python type hints (e.g., `city: str`). The LLM uses these to format inputs correctly.</li>
+    <li><strong>Docstrings:</strong> The docstring is the "prompt" for the tool. Explain <em>what</em> it does and <em>when</em> to use it clearly.</li>
+    <li><strong>Pydantic Models:</strong> For complex inputs, use Pydantic models to enforce schema validation.</li>
+</ul>
+
+<h2>Safety Considerations</h2>
+<p>
+    Just like code execution, tool use exposes your system.
+</p>
+<ul>
+    <li><strong>Read-Only vs. Write:</strong> Be careful exposing tools that modify state (e.g., `delete_user_from_db`).</li>
+    <li><strong>Confirmation:</strong> You can configure the UserProxy to ask for human confirmation before executing a specific tool call.</li>
+</ul>
+
+<h2>Summary</h2>
+<p>
+    Tools allow agents to interact with the external world in a structured, deterministic way, unlike free-form code execution which is more flexible but harder to control.
+</p>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

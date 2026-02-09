@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Advanced Code Execution</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Advanced Code Execution</h1>
+
+<h2>The Executor Abstraction</h2>
+<p>
+    AutoGen separates the <em>agent</em> (which requests code execution) from the <em>executor</em> (which actually runs it).
+    Recent versions of AutoGen have formalized this with the <code>CodeExecutor</code> interface.
+</p>
+
+<h2>LocalCommandLineCodeExecutor</h2>
+<p>
+    This executor runs code on the local operating system where the script is running.
+</p>
+<p>
+    <strong>Risks:</strong>
+</p>
+<ul>
+    <li><strong>Filesystem Access:</strong> The agent can delete or modify any file the user has access to.</li>
+    <li><strong>Network Access:</strong> The agent can download malware or exfiltrate data.</li>
+    <li><strong>Resource Usage:</strong> Infinite loops can freeze the machine.</li>
+</ul>
+<p>
+    <em>Recommendation:</em> Only use for development or in strictly isolated VMs.
+</p>
+
+<h2>DockerCommandLineCodeExecutor</h2>
+<p>
+    This is the production standard. It spins up a Docker container to run the code.
+</p>
+<p>
+    <strong>Benefits:</strong>
+</p>
+<ul>
+    <li><strong>Isolation:</strong> The agent is trapped in the container. It cannot touch the host filesystem.</li>
+    <li><strong>Reproducibility:</strong> You can specify a standard image (e.g., `python:3.10-slim`) ensuring consistent libraries.</li>
+    <li><strong>Cleanup:</strong> The container can be discarded after the task.</li>
+</ul>
+<p>
+    <strong>How it works:</strong>
+    You pass the name of the image (e.g., "python:3") to the `code_execution_config`. AutoGen handles the container lifecycle.
+</p>
+
+<h2>Jupyter Code Execution</h2>
+<p>
+    Command line execution is stateless; variables defined in one block are lost in the next unless saved to a file.
+    <strong>Jupyter-based execution</strong> keeps a kernel alive.
+</p>
+<ul>
+    <li><strong>Stateful:</strong> `x = 5` in message 1 means `print(x)` works in message 2.</li>
+    <li><strong>Rich Output:</strong> Can handle plots and images.</li>
+</ul>
+
+<h2>Security Best Practices</h2>
+<p>
+    1. <strong>Always use Docker</strong> in production.
+    2. <strong>Limit Network Access:</strong> Configure the Docker network to deny internet access if not needed.
+    3. <strong>Timeouts:</strong> Set strict timeouts in the executor config to prevent infinite loops.
+    4. <strong>Review Code:</strong> In sensitive environments, use HITL to manually review code before execution.
+</p>
+
+<h2>Summary</h2>
+<p>
+    Code execution is AutoGen's superpower, but it must be handled with care. The <code>CodeExecutor</code> abstraction allows you to swap the backend implementation (Local vs Docker vs Remote Cluster) without changing your agent logic.
+</p>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

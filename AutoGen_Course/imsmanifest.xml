@@ -22,11 +22,28 @@
 	<resources>
 		<resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="shared/launchpage.html">
       <file href="Introduction/Introduction.html"/>
-      <file href="AutoGenArchitecture/AgentTypesGroupChat.html"/>
-      <file href="AutoGenArchitecture/CodeExecHumanLoop.html"/>
-      <file href="AutoGenArchitecture/questions.js"/>
+
+      <file href="CoreConcepts/IntroductionToAgents.html"/>
+      <file href="CoreConcepts/AgentCommunication.html"/>
+      <file href="CoreConcepts/Configuration.html"/>
+      <file href="CoreConcepts/questions.js"/>
+      <file href="Assessment1/assessment.html"/>
+
+      <file href="AdvancedOrchestration/GroupChats.html"/>
+      <file href="AdvancedOrchestration/HumanInTheLoop.html"/>
+      <file href="AdvancedOrchestration/CodeExecution.html"/>
+      <file href="AdvancedOrchestration/questions.js"/>
+      <file href="Assessment2/assessment.html"/>
+
+      <file href="IntegrationPatterns/ToolUse.html"/>
+      <file href="IntegrationPatterns/RAG.html"/>
+      <file href="IntegrationPatterns/ProsCons.html"/>
+      <file href="IntegrationPatterns/questions.js"/>
+      <file href="Assessment3/assessment.html"/>
+
       <file href="FinalAssessment/assessment.html"/>
       <file href="FinalAssessment/questions.js"/>
+
       <file href="shared/assessmenttemplate.html"/>
       <file href="shared/background.jpg"/>
       <file href="shared/cclicense.png"/>

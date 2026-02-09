@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Agent Communication</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Agent Communication Patterns</h1>
+
+<h2>The Conversation Loop</h2>
+<p>
+    Communication in AutoGen is fundamentally about message passing. The framework abstracts the complexity of LLM context management into a unified "chat" interface.
+    When one agent speaks to another, the framework handles the history, appends the new message, and triggers the recipient to generate a reply.
+</p>
+
+<h2>Initiating Chat</h2>
+<p>
+    The primary entry point for interaction is the <code>initiate_chat</code> method. This is typically called on a <code>UserProxyAgent</code> instance.
+</p>
+<p>
+    <strong>Parameters:</strong>
+</p>
+<ul>
+    <li><strong>Recipient:</strong> The agent instance that will receive the message.</li>
+    <li><strong>Message:</strong> The initial prompt or task description.</li>
+    <li><strong>Context:</strong> Optional variables to pass into the chat context.</li>
+</ul>
+<p>
+    When <code>initiate_chat</code> is called, the sender sends the message to the recipient. The recipient processes it and replies. The sender then processes that reply and may reply back.
+    This triggers an automated loop referred to as the <strong>"Auto-Reply Loop"</strong>.
+</p>
+
+<h2>The Auto-Reply Mechanism</h2>
+<p>
+    Every <code>ConversableAgent</code> has a built-in method called <code>generate_reply</code>. This method is triggered whenever a message is received.
+    The agent determines how to reply based on a registered list of reply functions.
+</p>
+<p>
+    The standard order of checks for generating a reply is often:
+</p>
+<ol>
+    <li><strong>Check for Termination:</strong> Is the conversation over?</li>
+    <li><strong>Check for Human Input:</strong> Does the human need to intervene?</li>
+    <li><strong>Check for Function Call:</strong> Did the LLM suggest a tool call?</li>
+    <li><strong>Check for Code Execution:</strong> Is there code in the message to run?</li>
+    <li><strong>Generate LLM Reply:</strong> If none of the above, ask the LLM for a text response.</li>
+</ol>
+<p>
+    This "Chain of Responsibility" pattern ensures that agents behave deterministically. For example, if a <code>UserProxyAgent</code> sees code, it will prioritize executing it over asking the human, unless configured otherwise.
+</p>
+
+<h2>Termination Conditions</h2>
+<p>
+    Infinite loops are a risk in automated agent systems. AutoGen provides mechanisms to control when a conversation stops.
+</p>
+
+<h3>1. Max Turns</h3>
+<p>
+    You can set a hard limit on the number of exchange turns (e.g., <code>max_turns=10</code>). Once reached, the agent stops replying, effectively ending the loop.
+</p>
+
+<h3>2. Termination Message</h3>
+<p>
+    Agents can be configured to look for specific strings or conditions in the message to decide if the task is done.
+    For example, an <code>is_termination_msg</code> function can be passed to the agent constructor.
+    A common pattern is to check if the message contains "TERMINATE".
+</p>
+<p>
+    <em>Example Logic:</em> If the AssistantAgent solves the problem, it appends "TERMINATE" to its final answer. The UserProxyAgent sees this, its <code>is_termination_msg</code> check returns True, and the loop exits.
+</p>
+
+<h2>Context Management</h2>
+<p>
+    LLMs have a context window limit (token limit). AutoGen manages this chat history automatically.
+    Each agent maintains its own view of the conversation history. When sending a request to the LLM, the agent includes the relevant history.
+    If the history becomes too long, strategies like summarization or truncation (clearing history) may be needed, though basic AutoGen relies on the LLM's context window.
+</p>
+
+<h2>One-to-One vs. Many-to-Many</h2>
+<p>
+    The <code>initiate_chat</code> method establishes a one-to-one link. However, the internal state of an agent is not strictly bound to one conversation.
+    An agent can theoretically participate in multiple chats, but care must be taken regarding state pollution (e.g., history from one chat leaking into another).
+    Best practice usually involves resetting agent state (<code>agent.reset()</code>) before starting a completely new, unrelated task.
+</p>
+
+<h2>Summary</h2>
+<p>
+    Effective agent communication relies on defining clear roles and termination criteria.
+    The auto-reply loop automates the "action-feedback" cycle (e.g., write code -> run code -> read error -> rewrite code), which is what makes agents autonomous.
+</p>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>
