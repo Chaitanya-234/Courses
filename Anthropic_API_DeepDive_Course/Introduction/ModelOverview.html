@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>The Claude Model Family: Opus, Sonnet, and Haiku</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>The Claude Model Family: Opus, Sonnet, and Haiku</h1>
+
+<div class="content-section">
+
+<h2>Concept Overview</h2>
+<p>Anthropic's approach to Large Language Models (LLMs) is centered on the concept of "Intelligence as a Service," offering a tiered family of models designed to balance three critical dimensions: <strong>intelligence</strong>, <strong>speed</strong>, and <strong>cost</strong>. Understanding the nuances of each model tier is essential for architects and engineers, as selecting the wrong model can lead to either excessive latency and cost or insufficient reasoning capability for complex tasks.</p>
+
+<h2>Detailed Explanation: The Three Tiers</h2>
+<p>The Claude 3 family is categorized into three distinct classes, each optimized for specific use cases within an enterprise environment.</p>
+
+<h3>1. Claude 3 Opus: The Reasoning Engine</h3>
+<p><strong>Opus</strong> represents the pinnacle of current AI capability. It is designed for tasks that require deep reasoning, complex analysis, and high-stakes decision-making. Unlike smaller models that rely on pattern matching, Opus demonstrates a higher capacity for multi-step logic and nuance.</p>
+<ul>
+    <li><strong>Primary Use Cases:</strong> Scientific research, complex code generation, legal analysis, strategic planning, and handling ambiguous instructions.</li>
+    <li><strong>Trade-offs:</strong> It has the highest latency and cost per token. It is not suitable for real-time chat applications where sub-second response times are critical.</li>
+</ul>
+
+<h3>2. Claude 3.5 Sonnet: The Enterprise Workhorse</h3>
+<p><strong>Sonnet</strong> is the balanced choice for the vast majority of enterprise applications. It offers intelligence comparable to Opus but at significantly higher speeds and lower costs. Sonnet is engineered to be the "daily driver" for scaled AI solutions.</p>
+<ul>
+    <li><strong>Primary Use Cases:</strong> Code assistance, content generation, data extraction, RAG (Retrieval-Augmented Generation) systems, and customer support automation.</li>
+    <li><strong>Trade-offs:</strong> While exceptionally capable, it may occasionally struggle with the most esoteric or highly abstract reasoning tasks compared to Opus.</li>
+</ul>
+
+<h3>3. Claude 3 Haiku: The Speed Demon</h3>
+<p><strong>Haiku</strong> is optimized for pure speed and efficiency. It is designed to execute simple, well-defined tasks almost instantaneously. Its low latency makes it ideal for user-facing features that need to feel "snappy."</p>
+<ul>
+    <li><strong>Primary Use Cases:</strong> Content moderation, simple classification, translation, summarizing short texts, and real-time chat interactions.</li>
+    <li><strong>Trade-offs:</strong> Haiku has a smaller knowledge base and less reasoning depth. It should not be used for complex coding tasks or nuanced creative writing.</li>
+</ul>
+
+<h2>Technical Breakdown: Model Selection Framework</h2>
+<p>When architecting a system, do not default to the most powerful model. Instead, apply the following framework:</p>
+
+<h3>Task Complexity vs. Latency</h3>
+<p>Map your application's requirements on a 2x2 matrix of Complexity vs. Latency.
+<ul>
+    <li><strong>High Complexity, Low Latency Sensitivity:</strong> Choose Opus (e.g., overnight batch analysis of contracts).</li>
+    <li><strong>High Complexity, High Latency Sensitivity:</strong> Choose Sonnet (e.g., a coding assistant in an IDE).</li>
+    <li><strong>Low Complexity, High Latency Sensitivity:</strong> Choose Haiku (e.g., a customer service chatbot greeting).</li>
+</ul></p>
+
+<h3>The "Cascading" Pattern</h3>
+<p>A sophisticated architectural pattern involves using models in a cascade. Start with Haiku to classify the user's intent. If the intent is simple (e.g., "Reset my password"), let Haiku handle it. If the intent is complex (e.g., "Debug this race condition in my multi-threaded C++ code"), escalate the request to Sonnet or Opus. This optimizes cost without sacrificing quality for difficult queries.</p>
+
+<h2>Real-World Examples</h2>
+<ul>
+    <li><strong>Financial Services:</strong> A bank uses Haiku to categorize thousands of incoming transaction descriptions in real-time. Simultaneously, they use Opus to generate detailed investment memorandums based on quarterly earnings reports.</li>
+    <li><strong>Healthcare:</strong> A hospital uses Sonnet to summarize patient notes and extract medical codes, ensuring high accuracy while maintaining reasonable processing times for doctors.</li>
+</ul>
+
+<h2>Key Takeaways</h2>
+<ul>
+    <li><strong>Opus</strong> is for maximum intelligence; <strong>Haiku</strong> is for maximum speed. <strong>Sonnet</strong> balances both.</li>
+    <li>Model selection is a trade-off: you buy intelligence with latency and cost.</li>
+    <li>Use architectural patterns like cascading to route queries to the most efficient model for the specific task.</li>
+    <li>Always benchmark your specific use case; generic benchmarks may not reflect your domain's performance.</li>
+</ul>
+
+</div>
+
+<script type="text/javascript">
+// SCORM initialization if needed
+</script>
+</body>
+</html>
