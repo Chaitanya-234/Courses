@@ -20,18 +20,25 @@
 		</organization>
 	</organizations>
 	<resources>
-		<resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="shared/launchpage.html">
+		<resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="launchpage.html">
       <file href="Introduction/Introduction.html"/>
-      <file href="QConsole/GettingStarted.html"/>
-      <file href="QConsole/Troubleshooting.html"/>
-      <file href="QConsole/questions.js"/>
+      <file href="Module1_Fundamentals/Fundamentals.html"/>
+      <file href="Assessment1/assessment.html"/>
+      <file href="Assessment1/questions.js"/>
+      <file href="Module2_Troubleshooting/Troubleshooting.html"/>
+      <file href="Assessment2/assessment.html"/>
+      <file href="Assessment2/questions.js"/>
+      <file href="Module3_Optimization/Optimization.html"/>
+      <file href="Assessment3/assessment.html"/>
+      <file href="Assessment3/questions.js"/>
+      <file href="ProsCons/ProsAndCons.html"/>
       <file href="FinalAssessment/assessment.html"/>
       <file href="FinalAssessment/questions.js"/>
       <file href="shared/assessmenttemplate.html"/>
       <file href="shared/background.jpg"/>
       <file href="shared/cclicense.png"/>
       <file href="shared/contentfunctions.js"/>
-      <file href="shared/launchpage.html"/>
+      <file href="launchpage.html"/>
       <file href="shared/scormfunctions.js"/>
       <file href="shared/style.css"/>
 		</resource>
