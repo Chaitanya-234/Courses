@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Error Handling, Rate Limits, and Best Practices</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Error Handling, Rate Limits, and Best Practices</h1>
+
+<div class="content-section">
+
+<h2>Concept Overview</h2>
+<p>Building a resilient AI application requires more than just sending prompts and receiving answers. In a production environment, you must account for network failures, service overloads, rate limits, and unexpected model behaviors. A robust error handling strategy ensures your application degrades gracefully rather than crashing or hanging indefinitely.</p>
+
+<h2>Understanding API Errors</h2>
+<p>The Anthropic API communicates errors through standard HTTP status codes, accompanied by a JSON body detailing the specific issue. Recognizing these codes allows your application to react appropriately.</p>
+
+<h3>Client-Side Errors (4xx)</h3>
+<ul>
+    <li><strong>400 Bad Request:</strong> The request was malformed. Common causes include invalid JSON, exceeding token limits in the prompt, or missing required fields. These errors generally should <em>not</em> be retried automatically without modification.</li>
+    <li><strong>401 Unauthorized:</strong> The API key is missing or invalid. Check your environment variables and key rotation policies.</li>
+    <li><strong>403 Forbidden:</strong> The API key is valid but lacks permissions for the requested resource (e.g., accessing a restricted model).</li>
+    <li><strong>404 Not Found:</strong> The requested resource (like a specific Message ID or Batch ID) does not exist.</li>
+</ul>
+
+<h3>Rate Limit & Server Errors</h3>
+<ul>
+    <li><strong>429 Too Many Requests:</strong> You have exceeded the rate limits for your tier. This is a temporary condition.</li>
+    <li><strong>500 Internal Server Error:</strong> An unexpected error occurred on Anthropic's side.</li>
+    <li><strong>529 Overloaded:</strong> The API is currently under heavy load and cannot process the request. This is distinct from a 500 error and indicates a temporary capacity constraint.</li>
+</ul>
+
+<h2>Rate Limits and Retry Strategies</h2>
+<p>Rate limits are enforced on three dimensions: <strong>Requests Per Minute (RPM)</strong>, <strong>Tokens Per Minute (TPM)</strong>, and <strong>Tokens Per Day (TPD)</strong>. Hitting these limits results in a 429 error.</p>
+
+<h3>Exponential Backoff with Jitter</h3>
+<p>When encountering a 429 or 529 error, simply retrying immediately is counterproductive and may worsen the problem. Instead, implement <strong>Exponential Backoff</strong>:</p>
+<ol>
+    <li>Wait for a short base interval (e.g., 1 second).</li>
+    <li>Retry the request.</li>
+    <li>If it fails again, wait for 2x the previous interval (2 seconds).</li>
+    <li>Repeat, doubling the wait time (4s, 8s, 16s) up to a maximum limit.</li>
+</ol>
+<p><strong>Jitter</strong> adds a small random variation to the wait time. This prevents "thundering herd" scenarios where many clients retry simultaneously, potentially knocking the service over again.</p>
+
+<h2>Best Practices for Production</h2>
+
+<h3>1. Token Counting and Management</h3>
+<p>Before sending a request, estimate the token count of your input. If the conversation history exceeds the model's context window, truncate older messages or summarize them. Sending a prompt that exceeds the context limit results in a 400 error and wasted computation.</p>
+
+<h3>2. Pre-flight Validation</h3>
+<p>Validate your inputs on the client side whenever possible. Ensure that JSON schemas for tools are valid and that image data is correctly base64 encoded. Catching errors early saves latency and cost.</p>
+
+<h3>3. Security: API Key Management</h3>
+<p>Never hardcode API keys in your application code or commit them to version control. Use environment variables or a secure secrets manager. Implement key rotation policies to minimize the impact of a compromised key.</p>
+
+<h3>4. Monitoring and Alerting</h3>
+<p>Log all API interactions, including the prompt (sanitized of PII), response, latency, and token usage. Set up alerts for spikes in 4xx or 5xx errors, which could indicate a breaking change in your code or a service outage.</p>
+
+<h2>Key Takeaways</h2>
+<ul>
+    <li>Distinguish between permanent errors (400) and transient errors (429, 529).</li>
+    <li>Implement exponential backoff with jitter for robust retries.</li>
+    <li>Monitor your rate limits proactively to avoid service disruptions.</li>
+    <li>Secure your API keys and treat them as sensitive credentials.</li>
+</ul>
+
+</div>
+
+<script type="text/javascript">
+// SCORM initialization if needed
+</script>
+</body>
+</html>

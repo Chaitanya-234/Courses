@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
 <head>
-    <title>Defining and Using Tools</title>
+    <title>Defining Tools: The Bridge to External Actions</title>
     <style type="text/css" media="screen">
 		@import url( ../shared/style.css );
 	</style>
@@ -9,66 +9,79 @@
 	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
 </head>
 <body>
-<h1>Defining and Using Tools</h1>
+<h1>Defining Tools: The Bridge to External Actions</h1>
 
+<div class="content-section">
 
-<h2>Tool Definition Format</h2>
-<div class="code-block">
-<pre><code>tools = [
-    {
-        "name": "search_database",
-        "description": "Search the product database by keyword or category. Returns matching products with prices.",
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "query": {
-                    "type": "string",
-                    "description": "Search keyword or phrase"
-                },
-                "category": {
-                    "type": "string",
-                    "enum": ["electronics", "clothing", "books"],
-                    "description": "Product category filter"
-                },
-                "max_results": {
-                    "type": "integer",
-                    "description": "Maximum results to return (default: 10)"
-                }
-            },
-            "required": ["query"]
-        }
-    }
-]</code></pre>
-</div>
+<h2>Concept Overview</h2>
+<p><strong>Tool Use</strong> (often called Function Calling) is the mechanism that allows an LLM to interface with the outside world. Without tools, a model is isolated—trapped in a text-only box with knowledge frozen at its training cutoff. By defining tools, you give the model "hands" to perform actions: querying databases, calling internal APIs, sending emails, or performing complex calculations.</p>
+<p>Crucially, the model itself does <em>not</em> execute the code. Instead, it generates a structured <strong>Tool Use Block</strong> containing the name of the tool it wants to call and the precise arguments to call it with. Your application then executes the code and feeds the result back to the model.</p>
 
-<h2>Tool Use Flow</h2>
+<h2>Detailed Explanation: The Tool Definition</h2>
+<p>To enable tool use, you must provide a list of available tools in your API request. The quality of your tool definitions directly impacts the model's reliability.</p>
+
+<h3>Anatomy of a Tool</h3>
+<p>A tool definition consists of three key components:</p>
 <ul>
-    <li><strong>1.</strong> You send a message with tool definitions</li>
-    <li><strong>2.</strong> Claude decides if a tool is needed and returns a <code>tool_use</code> block</li>
-    <li><strong>3.</strong> You execute the tool and return the result as a <code>tool_result</code></li>
-    <li><strong>4.</strong> Claude incorporates the result into its response</li>
+    <li><strong>Name:</strong> A unique identifier (e.g., `get_weather`, `sql_query`). Use snake_case for consistency.</li>
+    <li><strong>Description:</strong> A natural language explanation of what the tool does, when to use it, and what it returns. This is the "prompt" for the tool. The model uses this to decide <em>if</em> and <em>how</em> to use the tool.</li>
+    <li><strong>Input Schema:</strong> A JSON Schema object defining the parameters the tool accepts. This dictates the structure of the data the model will generate.</li>
 </ul>
 
-<h2>Forcing Tool Use</h2>
-<div class="code-block">
-<pre><code># Force Claude to use a specific tool
-response = client.messages.create(
-    model="claude-sonnet-4-20250514",
-    max_tokens=1024,
-    tools=tools,
-    tool_choice={"type": "tool", "name": "search_database"},
-    messages=[{"role": "user", "content": "Find laptops under $1000"}]
-)
+<blockquote>
+// Example Tool Definition
+{
+  "name": "get_weather",
+  "description": "Get the current weather in a given location. Use this when the user asks about temperature or conditions.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "location": {
+        "type": "string",
+        "description": "The city and state, e.g., San Francisco, CA"
+      },
+      "unit": {
+        "type": "string",
+        "enum": ["celsius", "fahrenheit"],
+        "description": "The unit of temperature, defaults to celsius"
+      }
+    },
+    "required": ["location"]
+  }
+}
+</blockquote>
 
-# Force Claude to use any tool (not respond directly)
-tool_choice={"type": "any"}
+<h2>Technical Breakdown: Controlling Model Behavior</h2>
+<p>You can control how aggressive the model is in using tools via the `tool_choice` parameter:</p>
 
-# Let Claude decide (default)
-tool_choice={"type": "auto"}</code></pre>
+<h3>1. auto (Default)</h3>
+<p>The model decides whether to use a tool or reply with text based on the conversation context. This is best for general-purpose chatbots.</p>
+
+<h3>2. any</h3>
+<p>Forces the model to use <em>at least one</em> tool. It cannot reply with text. This is useful for agentic workflows where the next step <em>must</em> be an action.</p>
+
+<h3>3. tool</h3>
+<p>Forces the model to use a <em>specific</em> tool. This is useful when you want to execute a predetermined workflow step but need the model to extract the parameters from the user's input.</p>
+
+<h2>Real-World Examples</h2>
+<ul>
+    <li><strong>Calculator:</strong> Defining a tool `calculate(expression)` allows the model to perform precise math instead of relying on its own imperfect arithmetic capabilities.</li>
+    <li><strong>Database Retrieval:</strong> A tool `search_knowledge_base(query)` enables RAG (Retrieval-Augmented Generation) workflows, letting the model answer questions based on private company data.</li>
+    <li><strong>Action Execution:</strong> A tool `send_email(to, subject, body)` allows an AI assistant to draft and send communications on behalf of the user.</li>
+</ul>
+
+<h2>Key Takeaways</h2>
+<ul>
+    <li>The model generates <em>requests</em> to run code; it does not run code itself.</li>
+    <li>The <code>description</code> field is critical—treat it as part of your prompt engineering.</li>
+    <li>JSON Schema provides the strict contract for parameter validation.</li>
+    <li>Use <code>tool_choice</code> to orchestrate strict workflows.</li>
+</ul>
+
 </div>
 
-
 <script type="text/javascript">
+// SCORM initialization if needed
 </script>
 </body>
 </html>

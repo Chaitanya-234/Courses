@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Advanced Patterns: Chains, Agents, and Workflows</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Advanced Patterns: Chains, Agents, and Workflows</h1>
+
+<div class="content-section">
+
+<h2>Concept Overview</h2>
+<p>While a single tool call is powerful, the true potential of AI emerges when you chain multiple actions together. An <strong>Agent</strong> is simply an LLM loop that can observe an environment (via tool outputs), reason about the next step, and execute actions until a goal is achieved. This module explores how to architect these sophisticated workflows.</p>
+
+<h2>Detailed Explanation: Building an Agent Loop</h2>
+<p>An agentic workflow typically follows a `Thought -> Action -> Observation` cycle:</p>
+<ol>
+    <li><strong>Thought:</strong> The model analyzes the current state and the user's request.</li>
+    <li><strong>Action:</strong> The model decides to call a tool (e.g., `search_knowledge_base`).</li>
+    <li><strong>Observation:</strong> The application executes the tool and appends the result to the message history.</li>
+    <li><strong>Repeat:</strong> The model receives the observation and decides whether it has enough information to answer or needs to call another tool.</li>
+</ol>
+
+<h3>Parallel Tool Use</h3>
+<p>Modern models like Claude 3.5 Sonnet support <strong>Parallel Tool Use</strong>. If a user asks, "What's the weather in Tokyo and New York?", the model can generate <em>two</em> tool call blocks in a single response: `get_weather(Tokyo)` and `get_weather(New York)`. Your application can execute these in parallel, significantly reducing latency compared to sequential calls.</p>
+
+<h2>Technical Breakdown: State and Error Handling</h2>
+<p>Managing the state of a multi-turn agent is complex. You must maintain the entire history of tool calls and tool results in the `messages` array. If you omit a step, the model will lose context and may hallucinate.</p>
+
+<h3>Self-Correction Loops</h3>
+<p>One of the most powerful patterns is <strong>Error Recovery</strong>. If a tool execution fails (e.g., a database query returns a syntax error), you should not crash the application. Instead, feed the error message back to the model as a `tool_result` with an `is_error: true` flag.</p>
+<p>The model, seeing the error, can often self-correct. For example, if it queried for a column that doesn't exist, it might retry the query with a corrected schema based on the error message.</p>
+
+<h3>Preventing Infinite Loops</h3>
+<p>Autonomous agents can get stuck. A model might repeatedly try the same failed action or enter a reasoning loop. To prevent this, always implement:</p>
+<ul>
+    <li><strong>Max Steps:</strong> A hard limit on the number of tool calls allowed per request (e.g., 10 steps).</li>
+    <li><strong>Timeout:</strong> A maximum duration for the entire workflow.</li>
+    <li><strong>Human-in-the-Loop:</strong> For sensitive actions (like `delete_user`), require human approval before execution.</li>
+</ul>
+
+<h2>Real-World Examples</h2>
+<ul>
+    <li><strong>Customer Support Agent:</strong>
+        <ol>
+            <li>User: "Where is my order?"</li>
+            <li>Agent: Calls `lookup_order(user_id)`.</li>
+            <li>Tool: Returns "Order #123 is delayed."</li>
+            <li>Agent: Calls `check_policy(delay_compensation)`.</li>
+            <li>Tool: Returns "Offer $10 credit."</li>
+            <li>Agent: "I'm sorry for the delay. I can offer you a $10 credit."</li>
+        </ol>
+    </li>
+    <li><strong>Data Analyst:</strong>
+        <ol>
+            <li>User: "Plot the sales trend for Q3."</li>
+            <li>Agent: Calls `sql_query(sales_q3)`.</li>
+            <li>Tool: Returns raw data.</li>
+            <li>Agent: Calls `python_repl(plot_code)`.</li>
+            <li>Tool: Returns image data.</li>
+            <li>Agent: Displays the chart.</li>
+        </ol>
+    </li>
+</ul>
+
+<h2>Key Takeaways</h2>
+<ul>
+    <li>Agents are loops that consume tool outputs to drive further actions.</li>
+    <li>Parallel tool use optimizes performance for independent tasks.</li>
+    <li>Feeding errors back to the model enables robust self-healing workflows.</li>
+    <li>Always implement safeguards (max steps, timeouts) to control autonomous behavior.</li>
+</ul>
+
+</div>
+
+<script type="text/javascript">
+// SCORM initialization if needed
+</script>
+</body>
+</html>
