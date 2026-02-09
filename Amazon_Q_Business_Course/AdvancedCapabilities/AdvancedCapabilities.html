@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 3: Advanced Capabilities: Custom Plugins, Guardrails, and Deployment</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Module 3: Advanced Capabilities: Custom Plugins, Guardrails, and Deployment</h1>
+
+<div class="module-section">
+    <h2>3.1 Concept Overview: Beyond Information Retrieval</h2>
+    <p>While the ability to find and summarize information is transformative, the true potential of an AI assistant lies in its ability to <strong>take action</strong> and <strong>stay safe</strong>. A professional-grade enterprise assistant should not only tell you about your company's policies but also help you execute tasks related to those policies. Simultaneously, it must operate within strict ethical and operational boundaries, ensuring that it doesn't discuss inappropriate topics or expose sensitive personal data.</p>
+
+    <p>Module 3 explores the advanced features that elevate Amazon Q Business from a search tool to a comprehensive enterprise assistant: Plugins for actionability, Guardrails for safety, and the deployment mechanisms that bring it to the users' fingertips.</p>
+
+    <h2>3.2 Detailed Explanation: Custom Plugins and Actionability</h2>
+    <p><strong>Plugins</strong> allow Amazon Q Business to interact with external applications in real-time. Instead of just reading data *from* a system, plugins enable Amazon Q to send data *to* a system or perform complex workflows on behalf of the user.</p>
+
+    <h3>How Plugins Work</h3>
+    <p>Plugins are essentially connectors to APIs. When a user makes a request that implies an action (e.g., "Create a Jira ticket for this bug"), Amazon Q identifies the appropriate plugin, determines the required parameters (like title, description, and priority), and asks the user for confirmation before executing the API call.</p>
+
+    <h3>Types of Plugins</h3>
+    <ul>
+        <li><strong>Pre-built Plugins:</strong> Amazon Q offers ready-to-use plugins for popular services like ServiceNow, Jira, Salesforce, and Zendesk. These require minimal configuration, primarily focusing on authentication.</li>
+        <li><strong>Custom Plugins:</strong> For internal or bespoke applications, you can create custom plugins. These use an <strong>OpenAPI specification</strong> to define the available actions and <strong>AWS Lambda</strong> to execute the business logic.</li>
+    </ul>
+
+    <h3>The Power of Orchestration</h3>
+    <p>Plugins enable "Multi-step reasoning." A user could ask: "Find the latest sales report in S3 and summarize the key risks in a new Jira ticket for the Marketing team." Amazon Q would use its retriever to find the report, its LLM to summarize it, and its Jira plugin to create the ticket—all from a single prompt.</p>
+
+    <h2>3.3 Technical Breakdown: Guardrails and Safety</h2>
+    <p>In an enterprise environment, "unrestricted" AI can be a liability. <strong>Guardrails</strong> are the mechanisms used to control the behavior and output of the AI assistant.</p>
+
+    <h3>Topic Blocking</h3>
+    <p>Administrators can define specific topics that the assistant should refuse to discuss. This might include sensitive corporate strategy, legal advice, or non-work-related topics. When a user asks a question falling into a blocked category, Amazon Q provides a standard, polite refusal message rather than attempting to answer.</p>
+
+    <h3>Content Filtering and PII Masking</h3>
+    <p>Amazon Q Business integrates with safety filters to detect and block hate speech, violence, or other inappropriate content. Furthermore, it can be configured to automatically detect and mask <strong>Personally Identifiable Information (PII)</strong>, such as social security numbers or credit card details, in both user queries and AI responses. This is critical for compliance with regulations like GDPR or HIPAA.</p>
+
+    <h3>Global Controls vs. Local Overrides</h3>
+    <p>Guardrails can be applied at the application level, providing a consistent safety posture across the entire organization. Administrators can review logs of blocked queries to refine their rules over time.</p>
+
+    <h2>3.4 Real-World Examples: Automation and Compliance</h2>
+    <h3>Example 1: The Automated Helpdesk</h3>
+    <p>A company implements a ServiceNow plugin. When an employee tells Amazon Q, "My laptop screen is flickering," the assistant can first search for troubleshooting steps. If those don't work, it asks, "Would you like me to open a support ticket for you?" Upon confirmation, it creates the ticket in ServiceNow, populated with the user's details and a summary of the problem, and provides the user with the ticket number.</p>
+
+    <h3>Example 2: Enforcing "Professional Use Only"</h3>
+    <p>A financial services firm uses Topic Blocking to ensure their internal AI isn't used for personal investment advice. If a user asks, "Which stocks should I buy today?", the guardrail triggers, and Amazon Q responds: "I am designed to assist with internal company information and cannot provide personal financial or investment advice."</p>
+
+    <h2>3.5 Practical Applications: Deployment and Administration</h2>
+    <p>Deploying Amazon Q Business involves more than just technical configuration; it's about the end-user experience.</p>
+
+    <h3>The Web Experience</h3>
+    <p>Amazon Q provides a <strong>pre-built, customizable Web Experience</strong>. Administrators can customize the appearance (logo, colors) and the "Welcome" message. This web experience can be deployed as a standalone URL or embedded within an internal portal using an iframe.</p>
+
+    <h3>User Subscriptions and Access</h3>
+    <p>Access is managed through IAM Identity Center. Administrators assign users or groups to the Amazon Q application. It is important to remember that a user must have an active subscription (Lite or Pro) to interact with the assistant. Pro users get additional benefits, such as the ability to use the assistant within the AWS Management Console or Amazon QuickSight.</p>
+
+    <h3>Reviewing Analytics</h3>
+    <p>The Amazon Q console provides analytics on usage: how many active users, which data sources are most frequently cited, and common search terms. This data is invaluable for identifying "knowledge gaps"—topics where users are asking questions but the AI is unable to find authoritative answers.</p>
+
+    <h2>3.6 Key Takeaways</h2>
+    <ul>
+        <li>Plugins transform Amazon Q from a passive search tool into an active assistant capable of executing tasks.</li>
+        <li>Guardrails ensure that the AI remains professional, safe, and compliant with corporate policies.</li>
+        <li>PII masking and topic blocking are essential features for enterprise-grade security.</li>
+        <li>Deployment is simplified through a managed Web Experience, but requires careful subscription and identity management.</li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>
