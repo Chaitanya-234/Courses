@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 2: Building Accessible AI Solutions - Implementation</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Practical Implementation: Case Studies in Accessibility</h1>
+
+<div class="content-section">
+    <h2>Case Study 1: The "Meeting Inclusive Summary" App</h2>
+    <p>In many enterprises, employees with hearing impairments or those who process auditory information differently struggle with long, unformatted meeting transcripts. Using Amazon Q Apps, a team built a "Meeting Inclusive Summary" tool.</p>
+
+    <h3>Implementation Details:</h3>
+    <ul>
+        <li><strong>Input Card:</strong> Users upload the meeting transcript (text file).</li>
+        <li><strong>Query Card:</strong> The AI extracts key action items and decisions, but specifically looks for "social context"—who said what and the emotional tone of the meeting.</li>
+        <li><strong>Output Card:</strong> The summary is generated in a high-contrast format with clear "Next Steps" and a glossary of any technical terms used during the call.</li>
+    </ul>
+    <p><strong>Accessibility Impact:</strong> This app reduced the time required to review meetings by 60% for neurodivergent employees and provided a critical alternative for those who could not attend the live session due to sensory overload.</p>
+
+    <h2>Case Study 2: HR Policy Simplified</h2>
+    <p>Enterprise HR policies are often written in dense, legalistic language that is difficult for many users to navigate. An HR department used Amazon Q Apps to build an "Easy-Read Policy Guide."</p>
+
+    <h3>Implementation Details:</h3>
+    <ul>
+        <li><strong>Data Source:</strong> The app was connected to the official enterprise HR handbook via Amazon Q Business.</li>
+        <li><strong>Selection Card:</strong> Users select a topic (e.g., "Parental Leave," "Remote Work Policy").</li>
+        <li><strong>Query Card:</strong> The system prompt instructs: <em>"Explain this policy as if to a person who is new to the company. Use short sentences and no jargon."</em></li>
+    </ul>
+    <p><strong>Accessibility Impact:</strong> This lowered the barrier for employees with learning disabilities and non-native speakers, ensuring they could access their benefits and rights without confusion.</p>
+
+    <h2>Advanced Implementation: Context Injection for Assistive Tech</h2>
+    <p>For advanced builders, "Context Injection" involves providing the AI with information about the user's preferred accessibility settings. While Amazon Q Apps is still evolving, builders can currently implement this by adding a "Preferences" input card.</p>
+
+    <blockquote>
+        <strong>Pro Tip:</strong> By including a card where users can specify their needs (e.g., "I prefer bullet points" or "I need high-contrast descriptions"), you can pass this information as a variable to all subsequent Query cards, ensuring the entire app experience is personalized for the user's specific accessibility requirements.
+    </blockquote>
+
+    <h3>Testing Your Q App for Accessibility</h3>
+    <p>Before sharing your app with the organization, perform these three simple tests:</p>
+    <ol>
+        <li><strong>The Keyboard Test:</strong> Can you navigate every part of the app using only the 'Tab' and 'Enter' keys?</li>
+        <li><strong>The Screen Reader Test:</strong> Turn on a screen reader (VoiceOver on Mac, Narrator on Windows) and listen to how the app is described. Are the labels clear?</li>
+        <li><strong>The "Simple Language" Test:</strong> Ask a colleague who is unfamiliar with the topic to read the AI's output. Do they understand it immediately?</li>
+    </ol>
+</div>
+
+<div class="summary-section">
+    <h3>Key Takeaways</h3>
+    <ul>
+        <li>Real-world apps like meeting summarizers and policy simplifiers provide immediate accessibility value.</li>
+        <li>Personalizing outputs based on user preferences is a powerful way to enhance inclusivity.</li>
+        <li>Testing with keyboards and screen readers is a mandatory step in the development process.</li>
+    </ul>
+</div>
+
+</body>
+</html>
