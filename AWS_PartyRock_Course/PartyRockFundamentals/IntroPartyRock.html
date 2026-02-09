@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Introduction to PartyRock</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Introduction to PartyRock</h1>
+
+
+<h2>What is AWS PartyRock?</h2>
+<p>PartyRock is a free, no-code playground powered by Amazon Bedrock that lets anyone build and share GenAI applications. It requires no AWS account and is designed for rapid prototyping and learning.</p>
+
+<h2>Key Features</h2>
+<ul>
+    <li><strong>No AWS account needed:</strong> Sign in with social accounts to start building</li>
+    <li><strong>Widget-based builder:</strong> Drag and drop text, image, and chatbot widgets</li>
+    <li><strong>Multiple models:</strong> Access Claude, Titan, Llama, and other Bedrock models</li>
+    <li><strong>Instant sharing:</strong> Generate shareable links for your apps</li>
+    <li><strong>Free tier:</strong> Generous free usage for learning and prototyping</li>
+</ul>
+
+<h2>Building Your First PartyRock App</h2>
+<ol>
+    <li>Go to partyrock.aws and sign in</li>
+    <li>Click "Build your own app" or describe what you want in natural language</li>
+    <li>PartyRock generates an initial app layout with widgets</li>
+    <li>Customize widget prompts, model selection, and layout</li>
+    <li>Test and iterate on your design</li>
+</ol>
+
+<h2>Widget Types</h2>
+<table>
+    <tr><th>Widget</th><th>Purpose</th><th>Example</th></tr>
+    <tr><td>User Input</td><td>Text input from users</td><td>Topic field, question box</td></tr>
+    <tr><td>Static Text</td><td>Display instructions or labels</td><td>App description, headers</td></tr>
+    <tr><td>Text Generation</td><td>LLM output based on prompt</td><td>Story generator, summarizer</td></tr>
+    <tr><td>Image Generation</td><td>Create images from descriptions</td><td>Logo generator, scene creator</td></tr>
+    <tr><td>Chatbot</td><td>Interactive conversation</td><td>Q&amp;A assistant, tutor</td></tr>
+</table>
+
+<h2>Prompt Engineering in PartyRock</h2>
+<p>Each widget has a prompt that can reference other widgets using <code>@WidgetName</code>:</p>
+<div class="code-block">
+<pre><code>Widget: "Story Generator"
+Model: Claude 3 Sonnet
+Prompt: "Write a short story about @Topic in the style of @Genre.
+The story should be @Length paragraphs long and include the character @CharacterName."</code></pre>
+</div>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

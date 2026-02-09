@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Defining and Using Tools</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Defining and Using Tools</h1>
+
+
+<h2>Tool Definition Format</h2>
+<div class="code-block">
+<pre><code>tools = [
+    {
+        "name": "search_database",
+        "description": "Search the product database by keyword or category. Returns matching products with prices.",
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "query": {
+                    "type": "string",
+                    "description": "Search keyword or phrase"
+                },
+                "category": {
+                    "type": "string",
+                    "enum": ["electronics", "clothing", "books"],
+                    "description": "Product category filter"
+                },
+                "max_results": {
+                    "type": "integer",
+                    "description": "Maximum results to return (default: 10)"
+                }
+            },
+            "required": ["query"]
+        }
+    }
+]</code></pre>
+</div>
+
+<h2>Tool Use Flow</h2>
+<ul>
+    <li><strong>1.</strong> You send a message with tool definitions</li>
+    <li><strong>2.</strong> Claude decides if a tool is needed and returns a <code>tool_use</code> block</li>
+    <li><strong>3.</strong> You execute the tool and return the result as a <code>tool_result</code></li>
+    <li><strong>4.</strong> Claude incorporates the result into its response</li>
+</ul>
+
+<h2>Forcing Tool Use</h2>
+<div class="code-block">
+<pre><code># Force Claude to use a specific tool
+response = client.messages.create(
+    model="claude-sonnet-4-20250514",
+    max_tokens=1024,
+    tools=tools,
+    tool_choice={"type": "tool", "name": "search_database"},
+    messages=[{"role": "user", "content": "Find laptops under $1000"}]
+)
+
+# Force Claude to use any tool (not respond directly)
+tool_choice={"type": "any"}
+
+# Let Claude decide (default)
+tool_choice={"type": "auto"}</code></pre>
+</div>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

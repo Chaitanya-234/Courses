@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Messages API and Authentication</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Messages API and Authentication</h1>
+
+
+<h2>The Messages API</h2>
+<p>The Anthropic Messages API is the primary interface for interacting with Claude models. Every interaction follows a <strong>messages-based format</strong> with system prompts, user messages, and assistant responses.</p>
+
+<h2>Authentication</h2>
+<div class="code-block">
+<pre><code>import anthropic
+
+# API key authentication
+client = anthropic.Anthropic(api_key="sk-ant-...")
+
+# Or use environment variable ANTHROPIC_API_KEY
+client = anthropic.Anthropic()</code></pre>
+</div>
+
+<h2>Basic API Call</h2>
+<div class="code-block">
+<pre><code>response = client.messages.create(
+    model="claude-sonnet-4-20250514",
+    max_tokens=1024,
+    system="You are a helpful coding assistant.",
+    messages=[
+        {"role": "user", "content": "Write a Python function to check if a number is prime."}
+    ]
+)
+print(response.content[0].text)</code></pre>
+</div>
+
+<h2>Available Models</h2>
+<table>
+    <tr><th>Model</th><th>Best For</th><th>Context Window</th></tr>
+    <tr><td>claude-opus-4-20250514</td><td>Complex reasoning, coding, analysis</td><td>200K tokens</td></tr>
+    <tr><td>claude-sonnet-4-20250514</td><td>Balanced performance and cost</td><td>200K tokens</td></tr>
+    <tr><td>claude-haiku-3-5-20241022</td><td>Fast, cost-effective tasks</td><td>200K tokens</td></tr>
+</table>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

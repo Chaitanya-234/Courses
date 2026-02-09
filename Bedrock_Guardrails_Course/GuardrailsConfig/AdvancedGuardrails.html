@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Advanced Guardrail Features</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Advanced Guardrail Features</h1>
+
+
+<h2>Contextual Grounding Check</h2>
+<p>Ensure model responses are grounded in the provided source material:</p>
+<div class="code-block">
+<pre><code>bedrock.update_guardrail(
+    guardrailIdentifier="my-guardrail-id",
+    contextualGroundingPolicyConfig={
+        "filtersConfig": [
+            {
+                "type": "GROUNDING",
+                "threshold": 0.7  # 0-1, higher = stricter
+            },
+            {
+                "type": "RELEVANCE",
+                "threshold": 0.7
+            }
+        ]
+    }
+)</code></pre>
+</div>
+
+<h2>Applying Guardrails to Inference</h2>
+<div class="code-block">
+<pre><code>bedrock_runtime = boto3.client("bedrock-runtime")
+
+response = bedrock_runtime.invoke_model(
+    modelId="anthropic.claude-3-sonnet-20240229-v1:0",
+    guardrailIdentifier="my-guardrail-id",
+    guardrailVersion="DRAFT",
+    body=json.dumps({
+        "messages": [{"role": "user", "content": user_input}],
+        "max_tokens": 1024
+    })
+)
+
+# Check if guardrail intervened
+result = json.loads(response["body"].read())
+if result.get("amazon-bedrock-guardrailAction") == "GUARDRAIL_INTERVENED":
+    print("Response was blocked by guardrail")
+    print(result["amazon-bedrock-trace"])</code></pre>
+</div>
+
+<h2>Guardrail Metrics and Monitoring</h2>
+<table>
+    <tr><th>Metric</th><th>Description</th></tr>
+    <tr><td>Invocation count</td><td>Total number of guardrail evaluations</td></tr>
+    <tr><td>Intervention rate</td><td>Percentage of requests blocked</td></tr>
+    <tr><td>Category breakdown</td><td>Which filter types are triggering most</td></tr>
+    <tr><td>Latency impact</td><td>Additional latency added by guardrail evaluation</td></tr>
+</table>
+
+<h2>Best Practices</h2>
+<ul>
+    <li>Start with HIGH filter strength and relax only if false positives are excessive</li>
+    <li>Test guardrails with adversarial prompts before deploying to production</li>
+    <li>Use denied topics for business-specific restrictions beyond content safety</li>
+    <li>Enable PII anonymization (not blocking) for better user experience when possible</li>
+    <li>Monitor intervention rates - high rates may indicate UX issues or attack attempts</li>
+    <li>Version your guardrails and test changes in staging before production</li>
+</ul>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

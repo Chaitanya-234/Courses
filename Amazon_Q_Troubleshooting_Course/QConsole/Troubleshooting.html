@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Troubleshooting Common AWS Issues</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Troubleshooting Common AWS Issues</h1>
+
+
+<h2>Network Troubleshooting</h2>
+<p>Amazon Q excels at diagnosing networking issues. Common scenarios:</p>
+<table>
+    <tr><th>Issue</th><th>What to Ask Q</th></tr>
+    <tr><td>EC2 instance not reachable</td><td>"Why can't I connect to my EC2 instance i-0abc123?"</td></tr>
+    <tr><td>Lambda timeout</td><td>"My Lambda function is timing out trying to reach RDS"</td></tr>
+    <tr><td>S3 access denied</td><td>"I'm getting 403 when accessing my S3 bucket from EC2"</td></tr>
+    <tr><td>VPC peering issues</td><td>"Traffic isn't flowing between my VPCs"</td></tr>
+</table>
+
+<h2>Cost Analysis</h2>
+<p>Q can help you understand and optimize your AWS spending:</p>
+<div class="code-block">
+<pre><code>User: "What's driving my high EC2 costs this month?"
+Q: "Your EC2 costs increased 45% this month. Key contributors:
+    - 3 m5.4xlarge instances running 24/7 ($1,847/mo)
+    - 2 p3.2xlarge GPU instances ($7,344/mo)
+    - Consider:
+      1. Reserved Instances for steady workloads (save ~40%)
+      2. Spot for the GPU instances if interruptible
+      3. Right-sizing the m5.4xlarge if CPU util &lt; 40%"</code></pre>
+</div>
+
+<h2>CloudFormation and IaC Assistance</h2>
+<p>Q helps with infrastructure as code:</p>
+<ul>
+    <li>Explain CloudFormation template errors and suggest fixes</li>
+    <li>Generate CloudFormation snippets from natural language descriptions</li>
+    <li>Debug Terraform plan issues with AWS resources</li>
+    <li>Convert between CloudFormation and CDK constructs</li>
+</ul>
+
+<h2>Service Quotas and Limits</h2>
+<p>Q knows about AWS service limits and can help when you hit them:</p>
+<ul>
+    <li>"What's the maximum number of Lambda concurrent executions?"</li>
+    <li>"How do I request a VPC limit increase?"</li>
+    <li>"Why is my SQS message being rejected?" (message size limits)</li>
+</ul>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

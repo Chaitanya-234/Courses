@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Advanced Agent Features</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Advanced Agent Features</h1>
+
+
+<h2>Return of Control</h2>
+<p>Instead of calling a Lambda, the agent can <strong>return control to your application</strong> with the action details, letting you execute the action and return results. This is useful for actions requiring human approval.</p>
+
+<h2>Multi-Agent Collaboration</h2>
+<p>Bedrock supports <strong>supervisor agents</strong> that coordinate multiple sub-agents:</p>
+<ul>
+    <li><strong>Supervisor:</strong> Routes requests to the appropriate specialist agent</li>
+    <li><strong>Sub-agents:</strong> Specialized agents (order handling, product info, etc.)</li>
+    <li><strong>Shared context:</strong> Agents can pass context between each other</li>
+</ul>
+
+<h2>Session Management</h2>
+<table>
+    <tr><th>Feature</th><th>Description</th></tr>
+    <tr><td>Session ID</td><td>Maintain conversation across multiple invocations</td></tr>
+    <tr><td>Session TTL</td><td>Auto-expire idle sessions (configurable)</td></tr>
+    <tr><td>Session attributes</td><td>Pass metadata (user ID, channel, etc.) across turns</td></tr>
+    <tr><td>Prompt session attributes</td><td>Dynamic context injected per turn</td></tr>
+</table>
+
+<h2>Monitoring and Tracing</h2>
+<p>Enable <strong>trace logging</strong> to see the agent's reasoning process:</p>
+<ul>
+    <li>Pre-processing: Input analysis and intent detection</li>
+    <li>Orchestration: Planning which actions to take</li>
+    <li>Post-processing: Formatting the final response</li>
+</ul>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Code Execution and Human-in-the-Loop</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Code Execution and Human-in-the-Loop</h1>
+
+
+<h2>Code Execution in AutoGen</h2>
+<p>One of AutoGen's most powerful features is its ability to generate, execute, and debug code automatically. The UserProxyAgent runs generated code in a sandboxed environment:</p>
+<div class="code-block">
+<pre><code>from autogen import UserProxyAgent
+from autogen.coding import DockerCommandLineCodeExecutor
+
+# Docker-based execution (recommended for production)
+executor = DockerCommandLineCodeExecutor(
+    image="python:3.11-slim",
+    timeout=60,
+    work_dir="./workspace",
+)
+
+user_proxy = UserProxyAgent(
+    name="executor",
+    code_execution_config={"executor": executor},
+    human_input_mode="NEVER",
+)
+
+# The assistant generates code, executor runs it
+# If code fails, assistant sees the error and fixes it automatically</code></pre>
+</div>
+
+<h2>Execution Safety</h2>
+<table>
+    <tr><th>Approach</th><th>Security Level</th><th>Use Case</th></tr>
+    <tr><td>Docker executor</td><td>High - isolated container</td><td>Production, untrusted code</td></tr>
+    <tr><td>Local executor</td><td>Low - runs on host</td><td>Development only</td></tr>
+    <tr><td>Jupyter executor</td><td>Medium - notebook kernel</td><td>Data science workflows</td></tr>
+    <tr><td>Custom executor</td><td>Configurable</td><td>Specialized environments</td></tr>
+</table>
+
+<h2>Human-in-the-Loop Patterns</h2>
+<div class="code-block">
+<pre><code># Mode 1: Always ask for human input
+user_proxy = UserProxyAgent(
+    name="user",
+    human_input_mode="ALWAYS",  # Ask before every action
+)
+
+# Mode 2: Ask only when termination condition met
+user_proxy = UserProxyAgent(
+    name="user",
+    human_input_mode="TERMINATE",  # Ask only at the end
+    max_consecutive_auto_reply=10,
+)
+
+# Mode 3: Fully autonomous
+user_proxy = UserProxyAgent(
+    name="user",
+    human_input_mode="NEVER",  # No human intervention
+    is_termination_msg=lambda msg: "TASK_COMPLETE" in msg["content"],
+)</code></pre>
+</div>
+
+<h2>Termination Conditions</h2>
+<ul>
+    <li><strong>Max rounds:</strong> Limit the total number of conversation turns</li>
+    <li><strong>Termination message:</strong> Stop when a specific keyword appears (e.g., "TERMINATE")</li>
+    <li><strong>Custom function:</strong> Evaluate each message to decide if the task is complete</li>
+    <li><strong>Human approval:</strong> Pause and ask the user whether to continue</li>
+</ul>
+
+<h2>Best Practices</h2>
+<ul>
+    <li>Always use Docker executor in production to prevent arbitrary code execution on the host</li>
+    <li>Set reasonable max_round limits to prevent infinite agent loops</li>
+    <li>Use clear termination conditions so agents know when to stop</li>
+    <li>Log all agent conversations for debugging and audit purposes</li>
+    <li>Start with two agents before scaling to group chats</li>
+</ul>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

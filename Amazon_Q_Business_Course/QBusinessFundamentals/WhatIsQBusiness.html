@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>What Is Amazon Q Business?</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>What Is Amazon Q Business?</h1>
+
+
+<h2>Overview</h2>
+<p>Amazon Q Business is a <strong>fully managed generative AI assistant</strong> for enterprises. It connects to your company's data sources and provides employees with accurate, cited answers based on your internal knowledge.</p>
+
+<h2>Key Features</h2>
+<ul>
+    <li><strong>40+ Data Connectors:</strong> S3, SharePoint, Confluence, Salesforce, Slack, Gmail, Jira, and more</li>
+    <li><strong>Access Controls:</strong> Respects existing document-level permissions from source systems</li>
+    <li><strong>Citation Support:</strong> Every answer includes source document references</li>
+    <li><strong>Custom Plugins:</strong> Extend Q with custom actions (create tickets, update CRM, etc.)</li>
+    <li><strong>Admin Controls:</strong> Topic blocking, response guardrails, usage analytics</li>
+</ul>
+
+<h2>Architecture</h2>
+<table>
+    <tr><th>Component</th><th>Purpose</th></tr>
+    <tr><td>Application</td><td>The Q Business instance (one per use case)</td></tr>
+    <tr><td>Index</td><td>Stores ingested and indexed document content</td></tr>
+    <tr><td>Data Source</td><td>Connection to an external system (Confluence, S3, etc.)</td></tr>
+    <tr><td>Retriever</td><td>Finds relevant content for user queries</td></tr>
+    <tr><td>Web Experience</td><td>Pre-built chat UI for end users</td></tr>
+</table>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

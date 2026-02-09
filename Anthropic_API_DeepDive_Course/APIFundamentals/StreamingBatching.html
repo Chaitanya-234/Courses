@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Streaming and Batching</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Streaming and Batching</h1>
+
+
+<h2>Streaming Responses</h2>
+<p>Stream responses token-by-token for real-time UIs:</p>
+<div class="code-block">
+<pre><code>with client.messages.stream(
+    model="claude-sonnet-4-20250514",
+    max_tokens=1024,
+    messages=[{"role": "user", "content": "Explain microservices"}]
+) as stream:
+    for text in stream.text_stream:
+        print(text, end="", flush=True)</code></pre>
+</div>
+
+<h2>Message Batches API</h2>
+<p>Process large volumes of requests asynchronously at <strong>50% reduced cost</strong>:</p>
+<div class="code-block">
+<pre><code>batch = client.messages.batches.create(
+    requests=[
+        {"custom_id": "req-1", "params": {
+            "model": "claude-sonnet-4-20250514",
+            "max_tokens": 1024,
+            "messages": [{"role": "user", "content": "Summarize doc 1"}]
+        }},
+        {"custom_id": "req-2", "params": {
+            "model": "claude-sonnet-4-20250514",
+            "max_tokens": 1024,
+            "messages": [{"role": "user", "content": "Summarize doc 2"}]
+        }}
+    ]
+)
+
+# Poll for results
+result = client.messages.batches.retrieve(batch.id)</code></pre>
+</div>
+
+<h2>Rate Limits and Retries</h2>
+<ul>
+    <li><strong>Rate limits:</strong> Per-model tokens-per-minute and requests-per-minute limits</li>
+    <li><strong>Automatic retries:</strong> The SDK handles 429 (rate limit) and 529 (overloaded) errors</li>
+    <li><strong>Exponential backoff:</strong> Built-in retry logic with configurable max retries</li>
+</ul>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

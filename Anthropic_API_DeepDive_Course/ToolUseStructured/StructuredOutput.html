@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Structured Output with JSON Mode</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Structured Output with JSON Mode</h1>
+
+
+<h2>Getting Structured JSON Output</h2>
+<p>Use the tool use mechanism as a "JSON mode" by defining a tool whose schema matches your desired output:</p>
+<div class="code-block">
+<pre><code>tools = [{
+    "name": "extract_entities",
+    "description": "Extract structured entities from text",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "people": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "name": {"type": "string"},
+                        "role": {"type": "string"},
+                        "company": {"type": "string"}
+                    }
+                }
+            },
+            "topics": {
+                "type": "array",
+                "items": {"type": "string"}
+            }
+        }
+    }
+}]
+
+response = client.messages.create(
+    model="claude-sonnet-4-20250514",
+    max_tokens=1024,
+    tools=tools,
+    tool_choice={"type": "tool", "name": "extract_entities"},
+    messages=[{"role": "user", "content": "Extract from: John Smith, CEO of Acme Corp, discussed AI strategy..."}]
+)
+
+# Parse the structured result
+entities = response.content[0].input  # Already parsed JSON</code></pre>
+</div>
+
+<h2>Best Practices for Structured Output</h2>
+<ul>
+    <li><strong>Descriptive schemas:</strong> Add descriptions to every property for better accuracy</li>
+    <li><strong>Use enums:</strong> Constrain string values to valid options where possible</li>
+    <li><strong>Required fields:</strong> Mark critical fields as required to ensure they appear</li>
+    <li><strong>Validation:</strong> Always validate the returned JSON against your schema client-side</li>
+</ul>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

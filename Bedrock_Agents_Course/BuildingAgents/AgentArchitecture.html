@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Agent Architecture and Setup</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Agent Architecture and Setup</h1>
+
+
+<h2>Bedrock Agent Components</h2>
+<ul>
+    <li><strong>Foundation Model:</strong> The LLM that powers reasoning (Claude, Titan, Llama)</li>
+    <li><strong>Instructions:</strong> System prompt defining agent role and behavior</li>
+    <li><strong>Action Groups:</strong> Sets of API actions the agent can perform via Lambda</li>
+    <li><strong>Knowledge Bases:</strong> RAG-enabled document stores for grounding</li>
+    <li><strong>Guardrails:</strong> Content safety and topic filtering</li>
+</ul>
+
+<h2>Creating an Agent</h2>
+<div class="code-block">
+<pre><code>import boto3
+
+bedrock_agent = boto3.client("bedrock-agent")
+
+response = bedrock_agent.create_agent(
+    agentName="CustomerServiceAgent",
+    foundationModel="anthropic.claude-3-sonnet-20240229-v1:0",
+    instruction="You are a customer service agent for Acme Corp. "
+        "You can look up orders, process returns, and answer product questions. "
+        "Always be polite and verify the customer&apos;s identity before sharing order details.",
+    idleSessionTTLInSeconds=1800
+)</code></pre>
+</div>
+
+<h2>Action Groups with OpenAPI Schema</h2>
+<p>Define action groups using OpenAPI specifications that map to Lambda functions:</p>
+<div class="code-block">
+<pre><code># OpenAPI schema for order lookup
+openapi: 3.0.0
+paths:
+  /orders/{orderId}:
+    get:
+      summary: Look up an order by ID
+      operationId: getOrder
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string</code></pre>
+</div>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

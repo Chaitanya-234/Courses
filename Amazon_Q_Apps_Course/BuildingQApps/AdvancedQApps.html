@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Advanced Q Apps and Sharing</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Advanced Q Apps and Sharing</h1>
+
+
+<h2>Multi-Card App Design</h2>
+<p>Complex Q Apps chain multiple cards together for multi-step workflows:</p>
+<ul>
+    <li><strong>Input Card:</strong> Collects user data (text, file, selection)</li>
+    <li><strong>Query Card:</strong> Sends input to Q Business with specific instructions</li>
+    <li><strong>Plugin Card:</strong> Calls an external API or Q Business plugin</li>
+    <li><strong>Output Card:</strong> Displays formatted results</li>
+</ul>
+
+<h3>Example: RFP Response Generator</h3>
+<ol>
+    <li><strong>Input Card 1:</strong> Upload RFP document (file input)</li>
+    <li><strong>Input Card 2:</strong> Select product line (dropdown)</li>
+    <li><strong>Query Card 1:</strong> Extract key requirements from RFP</li>
+    <li><strong>Query Card 2:</strong> Match requirements to product capabilities (uses enterprise data)</li>
+    <li><strong>Output Card:</strong> Formatted RFP response draft</li>
+</ol>
+
+<h2>Publishing and Sharing</h2>
+<p>Share your Q Apps with your organization:</p>
+<ul>
+    <li><strong>Personal:</strong> Only you can access the app</li>
+    <li><strong>Shared:</strong> Published to your organization's Q App Library</li>
+    <li><strong>Admin-curated:</strong> Featured apps promoted by administrators</li>
+</ul>
+
+<h2>Data Source Integration</h2>
+<p>Q Apps access the same data sources configured in Q Business:</p>
+<ul>
+    <li>Amazon S3 buckets (documents, spreadsheets)</li>
+    <li>SharePoint sites and document libraries</li>
+    <li>Confluence spaces and pages</li>
+    <li>Salesforce knowledge articles</li>
+    <li>ServiceNow knowledge base</li>
+</ul>
+
+<h2>Governance and Controls</h2>
+<ul>
+    <li>Administrators control who can create and share Q Apps</li>
+    <li>Apps respect existing Q Business access controls and guardrails</li>
+    <li>Usage analytics show which apps are most popular</li>
+    <li>Version history tracks changes to published apps</li>
+</ul>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

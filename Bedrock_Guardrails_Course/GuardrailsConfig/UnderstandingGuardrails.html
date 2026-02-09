@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Understanding Bedrock Guardrails</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Understanding Bedrock Guardrails</h1>
+
+
+<h2>What Are Bedrock Guardrails?</h2>
+<p>Amazon Bedrock Guardrails provide configurable safeguards for your GenAI applications. They filter both input (user queries) and output (model responses) to enforce your organization's content policies.</p>
+
+<h2>Guardrail Components</h2>
+<ul>
+    <li><strong>Content Filters:</strong> Block harmful content across categories (hate, violence, sexual, misconduct, prompt attacks)</li>
+    <li><strong>Denied Topics:</strong> Define custom topics that the model should refuse to discuss</li>
+    <li><strong>Word Filters:</strong> Block specific words, phrases, or profanity</li>
+    <li><strong>Sensitive Information Filters:</strong> Detect and redact PII (SSN, email, phone, credit card)</li>
+    <li><strong>Contextual Grounding Check:</strong> Verify responses are grounded in provided context</li>
+</ul>
+
+<h2>Creating a Guardrail</h2>
+<div class="code-block">
+<pre><code>import boto3
+
+bedrock = boto3.client("bedrock")
+
+response = bedrock.create_guardrail(
+    name="CustomerServiceGuardrail",
+    description="Guardrail for customer service chatbot",
+    contentPolicyConfig={
+        "filtersConfig": [
+            {"type": "HATE", "inputStrength": "HIGH", "outputStrength": "HIGH"},
+            {"type": "VIOLENCE", "inputStrength": "HIGH", "outputStrength": "HIGH"},
+            {"type": "SEXUAL", "inputStrength": "HIGH", "outputStrength": "HIGH"},
+            {"type": "MISCONDUCT", "inputStrength": "HIGH", "outputStrength": "HIGH"},
+            {"type": "PROMPT_ATTACK", "inputStrength": "HIGH", "outputStrength": "NONE"}
+        ]
+    },
+    topicPolicyConfig={
+        "topicsConfig": [
+            {
+                "name": "CompetitorDiscussion",
+                "definition": "Discussions comparing our products to competitors",
+                "type": "DENY"
+            }
+        ]
+    },
+    sensitiveInformationPolicyConfig={
+        "piiEntitiesConfig": [
+            {"type": "US_SOCIAL_SECURITY_NUMBER", "action": "BLOCK"},
+            {"type": "EMAIL", "action": "ANONYMIZE"},
+            {"type": "PHONE", "action": "ANONYMIZE"}
+        ]
+    }
+)</code></pre>
+</div>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

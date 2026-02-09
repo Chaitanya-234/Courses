@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Getting Started with Amazon Q in AWS</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Getting Started with Amazon Q in AWS</h1>
+
+
+<h2>What is Amazon Q in the AWS Console?</h2>
+<p>Amazon Q is an AI assistant built into the AWS Management Console that helps you understand AWS services, troubleshoot issues, and navigate resources. It is available directly in the console toolbar.</p>
+
+<h2>Key Capabilities</h2>
+<ul>
+    <li><strong>Service explanation:</strong> Ask about any AWS service and get instant explanations</li>
+    <li><strong>Error diagnosis:</strong> Paste error messages and get troubleshooting guidance</li>
+    <li><strong>Resource queries:</strong> Ask about your deployed resources and their configuration</li>
+    <li><strong>Console navigation:</strong> Find the right console page for any task</li>
+    <li><strong>CLI generation:</strong> Generate AWS CLI commands from natural language</li>
+</ul>
+
+<h2>Example Conversations</h2>
+<div class="code-block">
+<pre><code># Error diagnosis
+User: "My Lambda function is returning AccessDeniedException when calling DynamoDB"
+Q: "This error indicates your Lambda execution role doesn't have the required
+    DynamoDB permissions. Here's how to fix it:
+    1. Go to IAM > Roles > your-lambda-role
+    2. Attach AmazonDynamoDBReadOnlyAccess (or a custom policy)
+    3. Your Lambda will pick up the new permissions automatically"
+
+# Resource queries
+User: "How many EC2 instances are running in us-east-1?"
+Q: "You have 12 EC2 instances running in us-east-1:
+    - 8 t3.medium (production)
+    - 3 t3.micro (development)
+    - 1 m5.xlarge (database)"</code></pre>
+</div>
+
+<h2>Permissions and Access</h2>
+<p>Amazon Q in the Console respects your IAM permissions - it can only see and describe resources you have access to. No additional configuration is required beyond standard IAM roles.</p>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

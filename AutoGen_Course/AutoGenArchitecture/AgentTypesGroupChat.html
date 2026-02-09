@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Agent Types and Group Chat</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Agent Types and Group Chat</h1>
+
+
+<h2>What is AutoGen?</h2>
+<p>AutoGen is Microsoft's open-source framework for building multi-agent systems where multiple AI agents collaborate through conversations. Agents can plan, write code, execute it, debate results, and iteratively solve complex problems together.</p>
+
+<h2>Agent Types</h2>
+<table>
+    <tr><th>Agent Type</th><th>Description</th><th>Use Case</th></tr>
+    <tr><td>AssistantAgent</td><td>LLM-powered agent that generates responses and code</td><td>Planning, analysis, code generation</td></tr>
+    <tr><td>UserProxyAgent</td><td>Represents the human user, can execute code</td><td>Code execution, human feedback</td></tr>
+    <tr><td>ConversableAgent</td><td>Base class for custom agents with configurable behavior</td><td>Specialized roles and custom logic</td></tr>
+    <tr><td>GroupChatManager</td><td>Orchestrates multi-agent conversations</td><td>Managing turn-taking and flow</td></tr>
+</table>
+
+<h2>Two-Agent Conversation</h2>
+<div class="code-block">
+<pre><code>from autogen import AssistantAgent, UserProxyAgent
+
+# Configuration for the LLM
+llm_config = {
+    "model": "gpt-4o",
+    "api_key": os.environ["OPENAI_API_KEY"],
+}
+
+# Create an assistant agent
+assistant = AssistantAgent(
+    name="data_analyst",
+    system_message="You are a data analyst. Write Python code to analyze data.",
+    llm_config=llm_config,
+)
+
+# Create a user proxy that can execute code
+user_proxy = UserProxyAgent(
+    name="user",
+    human_input_mode="NEVER",  # Fully autonomous
+    code_execution_config={"work_dir": "workspace"},
+)
+
+# Start the conversation
+user_proxy.initiate_chat(
+    assistant,
+    message="Analyze the sales data in sales.csv and create a trend chart."
+)</code></pre>
+</div>
+
+<h2>Group Chat</h2>
+<p>Group chat enables three or more agents to collaborate on a task:</p>
+<div class="code-block">
+<pre><code>from autogen import GroupChat, GroupChatManager
+
+# Define specialized agents
+planner = AssistantAgent(name="planner", system_message="You plan tasks.", llm_config=llm_config)
+coder = AssistantAgent(name="coder", system_message="You write code.", llm_config=llm_config)
+reviewer = AssistantAgent(name="reviewer", system_message="You review code.", llm_config=llm_config)
+
+# Create group chat
+group_chat = GroupChat(
+    agents=[user_proxy, planner, coder, reviewer],
+    messages=[],
+    max_round=12,
+    speaker_selection_method="auto",  # LLM decides who speaks next
+)
+
+manager = GroupChatManager(groupchat=group_chat, llm_config=llm_config)
+user_proxy.initiate_chat(manager, message="Build a REST API for user management.")</code></pre>
+</div>
+
+<h2>Speaker Selection Methods</h2>
+<ul>
+    <li><strong>auto:</strong> The LLM decides which agent should speak next based on conversation context</li>
+    <li><strong>round_robin:</strong> Agents take turns in a fixed order</li>
+    <li><strong>random:</strong> A random agent is selected each turn</li>
+    <li><strong>Custom function:</strong> Provide your own selection logic for deterministic workflows</li>
+</ul>
+
+
+<script type="text/javascript">
+</script>
+</body>
+</html>
