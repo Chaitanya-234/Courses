@@ -26,18 +26,21 @@
       <file href="CoreConcepts/IntroductionToAgents.html"/>
       <file href="CoreConcepts/AgentCommunication.html"/>
       <file href="CoreConcepts/Configuration.html"/>
+      <file href="CoreConcepts/AgentCustomization.html"/>
       <file href="CoreConcepts/questions.js"/>
       <file href="Assessment1/assessment.html"/>
 
       <file href="AdvancedOrchestration/GroupChats.html"/>
       <file href="AdvancedOrchestration/HumanInTheLoop.html"/>
       <file href="AdvancedOrchestration/CodeExecution.html"/>
+      <file href="AdvancedOrchestration/ErrorHandlingStrategies.html"/>
       <file href="AdvancedOrchestration/questions.js"/>
       <file href="Assessment2/assessment.html"/>
 
       <file href="IntegrationPatterns/ToolUse.html"/>
       <file href="IntegrationPatterns/RAG.html"/>
       <file href="IntegrationPatterns/ProsCons.html"/>
+      <file href="IntegrationPatterns/FutureOfAgents.html"/>
       <file href="IntegrationPatterns/questions.js"/>
       <file href="Assessment3/assessment.html"/>
 
