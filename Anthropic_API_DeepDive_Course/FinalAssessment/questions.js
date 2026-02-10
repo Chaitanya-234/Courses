@@ -197,3 +197,43 @@ test.AddQuestion( new Question ("com.scorm.anthropic.final.25",
                                 true,
                                 "obj_final")
                 );
+
+test.AddQuestion( new Question ("com.scorm.anthropic.final.26",
+                                "Which of the following image formats is supported for vision input in the Messages API?",
+                                QUESTION_TYPE_CHOICE,
+                                new Array("TIFF", "BMP", "WebP", "SVG"),
+                                "WebP",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("com.scorm.anthropic.final.27",
+                                "What does the 'Computer Use' capability enable Claude to do?",
+                                QUESTION_TYPE_CHOICE,
+                                new Array("Physically move a robotic arm", "Interact with a computer GUI (screen, mouse, keyboard)", "Overclock the server CPU", "Mine cryptocurrency"),
+                                "Interact with a computer GUI (screen, mouse, keyboard)",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("com.scorm.anthropic.final.28",
+                                "How does Prompt Caching specifically benefit vision-heavy workflows?",
+                                QUESTION_TYPE_CHOICE,
+                                new Array("It increases the resolution of images", "It avoids re-processing expensive image tokens for repeated requests", "It automatically captions images", "It converts images to video"),
+                                "It avoids re-processing expensive image tokens for repeated requests",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("com.scorm.anthropic.final.29",
+                                "What is the primary purpose of a 'human-in-the-loop' mechanism in high-stakes agentic systems?",
+                                QUESTION_TYPE_CHOICE,
+                                new Array("To speed up the processing", "To manually type every response", "To validate and approve critical actions before execution", "To reduce the cost of the API"),
+                                "To validate and approve critical actions before execution",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("com.scorm.anthropic.final.30",
+                                "Compared to a text-only prompt, adding a high-resolution image to the request generally results in...",
+                                QUESTION_TYPE_CHOICE,
+                                new Array("Lower latency (faster response)", "Higher latency (slower response)", "No change in latency", "An immediate error"),
+                                "Higher latency (slower response)",
+                                "obj_final")
+                );

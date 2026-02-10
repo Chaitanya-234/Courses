@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Multimodal Best Practices</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+    <h1>Multimodal Best Practices</h1>
+
+    <h2>| Concept Overview</h2>
+    <p>
+        While Claude's vision capabilities are powerful, they are not infinite. Understanding the cost implications, latency considerations, and model limitations is essential for building scalable and reliable multimodal applications. This module explores strategies to optimize your usage of vision features.
+    </p>
+
+    <h2>| Detailed Explanation: Token Usage and Cost</h2>
+    <p>
+        Images consume tokens just like text. The number of tokens an image uses depends on its resolution and aspect ratio.
+    </p>
+    <ul>
+        <li><strong>Resolution Impact:</strong> Higher resolution images (e.g., 4K screenshots) consume significantly more tokens than smaller thumbnails. While detail is preserved, the cost per API call increases.</li>
+        <li><strong>Scaling Strategies:</strong> For tasks that do not require fine details (e.g., detecting if an image is a cat vs. a dog), resizing the image before encoding it to base64 can save substantial costs. However, for tasks like reading small text in a document, higher resolution is necessary.</li>
+    </ul>
+
+    <h2>| Technical Breakdown: Performance Optimization</h2>
+    <p>
+        <strong>Latency:</strong> Processing images is computationally more intensive than text. Expect higher latency for requests containing large images. To mitigate this:
+    </p>
+    <ul>
+        <li><strong>Resize Appropriately:</strong> Don't send a 10MB image if a 500KB version suffices.</li>
+        <li><strong>Cache Context:</strong> If you are asking multiple questions about the same image in a long conversation, leverage <em>Prompt Caching</em> (if available) to avoid reprocessing the image tokens repeatedly.</li>
+        <li><strong>Format Matters:</strong> Use efficient formats like WebP or JPEG with appropriate compression levels.</li>
+    </ul>
+
+    <h2>| Real-World Examples: Limitations</h2>
+    <p>
+        It is crucial to understand what Claude <em>cannot</em> reliably do with vision.
+    </p>
+    <ul>
+        <li><strong>Spatial Reasoning:</strong> While good at describing content, precise spatial measurements (e.g., "Is the object exactly 10cm to the left?") can be inaccurate.</li>
+        <li><strong>Medical Diagnosis:</strong> Claude is not a doctor. It should not be used for interpreting medical imaging (X-rays, MRIs) for diagnostic purposes.</li>
+        <li><strong>Complex Captchas:</strong> Designed to thwart bots, these are often challenging for AI models as well.</li>
+    </ul>
+
+    <h2>| Key Takeaways</h2>
+    <ul>
+        <li><strong>Optimize Images:</strong> Resize and compress images to balance cost and performance.</li>
+        <li><strong>Understand Token Costs:</strong> Image tokens are calculated based on size; be mindful of your budget.</li>
+        <li><strong>Know the Limits:</strong> Avoid relying on the model for tasks requiring high spatial precision or regulated professional judgment (e.g., medical).</li>
+        <li><strong>Prompt Caching:</strong> Use caching for recurring image contexts to improve efficiency.</li>
+    </ul>
+</body>
+</html>

@@ -189,7 +189,7 @@
         return String(val);
     }
 
-    var pageArray = new Array(14);
+    var pageArray = new Array(18);
 
     // Course Introduction
     pageArray[0] = "Introduction/Introduction.html";
@@ -210,8 +210,14 @@
     pageArray[11] = "ToolUseStructured/BestPractices.html";
     pageArray[12] = "ToolUseStructured/assessment.html";
 
+    // Advanced Capabilities
+    pageArray[13] = "AdvancedCapabilities/VisionCapabilities.html";
+    pageArray[14] = "AdvancedCapabilities/MultimodalBestPractices.html";
+    pageArray[15] = "AdvancedCapabilities/FutureAndAgents.html";
+    pageArray[16] = "AdvancedCapabilities/assessment.html";
+
     // Final Comprehensive Assessment
-    pageArray[13] = "FinalAssessment/assessment.html"; // 25 unique questions
+    pageArray[17] = "FinalAssessment/assessment.html"; // 30 unique questions
 
     var currentPage = null;
     var startTimeStamp = null;
@@ -276,6 +282,10 @@
         nextButton.style.opacity = "1";
         prevButton.style.cursor = "pointer";
         nextButton.style.cursor = "pointer";
+        nextButton.style.display = "inline-block";
+
+        // Reset reachedEnd status when navigating
+        reachedEnd = false;
 
         if (currentPage == 0){
             prevButton.disabled = true;
@@ -283,9 +293,7 @@
             prevButton.style.cursor = "not-allowed";
         }
         else if (currentPage == (pageArray.length - 1)){
-            nextButton.disabled = true;
-            nextButton.style.opacity = "0.5";
-            nextButton.style.cursor = "not-allowed";
+            nextButton.style.display = "none";
             reachedEnd = true;
         }
     }
