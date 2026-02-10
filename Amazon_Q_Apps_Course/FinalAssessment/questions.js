@@ -1,223 +1,331 @@
-// Final Assessment Questions - Amazon Q Apps Course
-// Focus: Comprehensive and Applied Knowledge - REVISED FOR ABSOLUTE UNIQUENESS
-// Total: 20 Unique Questions
+// Final Comprehensive Assessment - AI Accessibility with Amazon Q Apps
+// ALL QUESTIONS ARE UNIQUE AND DISTINCT FROM MODULE ASSESSMENTS
 
-test.AddQuestion( new Question ("final_q1",
-                                "In the hierarchy of AWS generative AI services, where does Amazon Q Apps sit in relation to Amazon Q Business?",
+// Section 1: Foundations & Principles
+test.AddQuestion( new Question ("f_q1",
+                                "Which concept explains why a clear, AI-generated summary benefits not only users with cognitive disabilities but also busy executives or non-native speakers?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("It is a standalone service that does not require Q Business.",
-                                          "It is an application-building capability that operates within the context and security boundary of an Amazon Q Business application.",
-                                          "It is the underlying engine that powers Amazon Bedrock.",
-                                          "It is a programming language used to write Q Business plugins."),
-                                "It is an application-building capability that operates within the context and security boundary of an Amazon Q Business application.",
+                                new Array(
+                                    "The curb-cut effect",
+                                    "The data perimeter effect",
+                                    "Algorithmic bias",
+                                    "The semantic web"
+                                ),
+                                "The curb-cut effect",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q2",
-                                "Which concept refers to the shift where business employees, rather than just IT developers, create AI tools to solve their own productivity challenges?",
+test.AddQuestion( new Question ("f_q2",
+                                "When an AI application builder ensures their dashboard is fully navigable via screen reader, which dimension of accessibility are they primarily addressing?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("Software Outsourcing",
-                                          "The Democratization of AI and the rise of the 'Citizen Developer'",
-                                          "Hardware Virtualization",
-                                          "Data Siloing"),
-                                "The Democratization of AI and the rise of the 'Citizen Developer'",
+                                new Array(
+                                    "Accessible AI Outputs",
+                                    "Accessible AI Interfaces",
+                                    "Inclusive Dataset Training",
+                                    "Model Hallucination Mitigation"
+                                ),
+                                "Accessible AI Interfaces",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q3",
-                                "When converting a chat conversation into an app, how does the AI determine what inputs the user should provide when they run the app later?",
+test.AddQuestion( new Question ("f_q3",
+                                "In the WCAG 'POUR' framework, providing a text transcript for an AI-generated video is an example of making content more:",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("It requires the user to write a JSON schema.",
-                                          "It automatically identifies the specific parameters and intent from the previous chat to create dynamic Input Cards.",
-                                          "It asks the IT department to define the variables.",
-                                          "It uses a standard set of inputs for every app regardless of the conversation."),
-                                "It automatically identifies the specific parameters and intent from the previous chat to create dynamic Input Cards.",
+                                new Array(
+                                    "Perceivable",
+                                    "Operable",
+                                    "Understandable",
+                                    "Robust"
+                                ),
+                                "Perceivable",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q4",
-                                "In the multi-card app builder, what is the technical purpose of 'Dynamic Variable Referencing' between cards?",
+test.AddQuestion( new Question ("f_q4",
+                                "Inclusive design for AI starts with which mindset?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("To change the background color of the app.",
-                                          "To allow the output of one step (e.g., a data extraction) to serve as the prompt input for a subsequent step (e.g., a summary).",
-                                          "To store the user's password securely.",
-                                          "To link the app to a different AWS account."),
-                                "To allow the output of one step (e.g., a data extraction) to serve as the prompt input for a subsequent step (e.g., a summary).",
+                                new Array(
+                                    "Designing for the 'average' user first.",
+                                    "Recognizing that exclusion happens when we use our own biases to solve problems.",
+                                    "Focusing exclusively on technical compliance with laws.",
+                                    "Ignoring edge cases to speed up the development cycle."
+                                ),
+                                "Recognizing that exclusion happens when we use our own biases to solve problems.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q5",
-                                "How does the 'Serverless' nature of Amazon Q Apps benefit a company's financial model regarding AI experimentation?",
+test.AddQuestion( new Question ("f_q5",
+                                "Why is 'Robustness' a key pillar for AI-generated HTML content?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("It requires a large upfront investment in servers.",
-                                          "It allows for low-cost experimentation because there is no infrastructure to provision or maintain.",
-                                          "It eliminates the need for any AWS billing.",
-                                          "It provides a fixed cost regardless of how many people use the app."),
-                                "It allows for low-cost experimentation because there is no infrastructure to provision or maintain.",
+                                new Array(
+                                    "It ensures the content can be interpreted by a wide variety of assistive technologies.",
+                                    "It makes the content load faster on mobile devices.",
+                                    "It prevents the AI from generating incorrect information.",
+                                    "It reduces the cost of running the LLM."
+                                ),
+                                "It ensures the content can be interpreted by a wide variety of assistive technologies.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q6",
-                                "Which mechanism ensures that a Q App's response is grounded in actual company documents rather than just the general knowledge of a Large Language Model?",
+// Section 2: Building with Amazon Q Apps
+test.AddQuestion( new Question ("f_q6",
+                                "How does the 'Conversation-to-App' feature in Amazon Q Apps support accessibility?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("Hard-coding the answers into the app.",
-                                          "Retrieval-Augmented Generation (RAG) using the Amazon Q Business index.",
-                                          "Sending the user to a Google search.",
-                                          "Using a spell-checker on the AI's output."),
-                                "Retrieval-Augmented Generation (RAG) using the Amazon Q Business index.",
+                                new Array(
+                                    "By automatically encrypting all user conversations.",
+                                    "By allowing users to build complex tools through natural language instead of rigid technical syntax.",
+                                    "By limiting the app to only one type of user interaction.",
+                                    "By requiring users to have a developer background."
+                                ),
+                                "By allowing users to build complex tools through natural language instead of rigid technical syntax.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q7",
-                                "A legal department is concerned that using AI to summarize contracts might leak data. How does Amazon Q Apps address this concern technically?",
+test.AddQuestion( new Question ("f_q7",
+                                "When configuring an Amazon Q App, why is the sequence of cards important for a blind user?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("By encrypting the summary and sending it to the public web.",
-                                          "By ensuring all data processing occurs within the enterprise's private AWS environment and never using customer data to train the underlying models.",
-                                          "By requiring all contracts to be printed first.",
-                                          "By only allowing summaries of non-sensitive documents."),
-                                "By ensuring all data processing occurs within the enterprise's private AWS environment and never using customer data to train the underlying models.",
+                                new Array(
+                                    "It changes the color theme of the application.",
+                                    "It ensures a logical reading and navigation order for screen readers.",
+                                    "It reduces the amount of data stored in the cloud.",
+                                    "It is not important; screen readers can jump to any card randomly."
+                                ),
+                                "It ensures a logical reading and navigation order for screen readers.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q8",
-                                "What is the primary function of the 'Q Apps Library' in a large organization with thousands of employees?",
+test.AddQuestion( new Question ("f_q8",
+                                "Which 'System Prompt' instruction would most directly improve the cognitive accessibility of an AI's response?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("To store the source code for the AWS Management Console.",
-                                          "To serve as a searchable marketplace where employees can discover, run, and share useful AI apps created by their peers.",
-                                          "To provide a list of physical books available in the corporate office.",
-                                          "To manage the company's social media accounts."),
-                                "To serve as a searchable marketplace where employees can discover, run, and share useful AI apps created by their peers.",
+                                new Array(
+                                    "\"Use as much technical detail as possible.\"",
+                                    "\"Format the response in a single, long paragraph.\"",
+                                    "\"Summarize key points using short sentences and plain language.\"",
+                                    "\"Do not use any headers or bullet points.\""
+                                ),
+                                "\"Summarize key points using short sentences and plain language.\"",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q9",
-                                "Scenario: Your marketing app is generating social media posts that are too technical. What is the most effective way to adjust the 'Instructional Tone' of the app?",
+test.AddQuestion( new Question ("f_q9",
+                                "You are building a Q App for HR policy retrieval. To minimize the motor and cognitive effort for the user, which interaction component should you prefer for selecting a policy category?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("Reinstalling the web browser.",
-                                          "Modifying the prompt within the Query Card to specifically define the desired persona and target audience.",
-                                          "Asking every user to type 'make it less technical' in their input.",
-                                          "Buying a faster computer."),
-                                "Modifying the prompt within the Query Card to specifically define the desired persona and target audience.",
+                                new Array(
+                                    "A free-text input box where users must type the exact policy name.",
+                                    "A selection card with a predefined list of policy categories.",
+                                    "A file upload card for the user's ID card.",
+                                    "A link to a 100-page PDF document."
+                                ),
+                                "A selection card with a predefined list of policy categories.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q10",
-                                "An administrator wants to ensure that no Q App in the company mentions a specific competitor by name. Which feature should they use?",
+test.AddQuestion( new Question ("f_q10",
+                                "When performing a 'Simple Language Test' for an AI-generated tool, who is the ideal person to review the output?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("Individual app deletion.",
-                                          "Configuring 'Guardrails' at the Amazon Q Business application level.",
-                                          "Writing a custom CSS rule.",
-                                          "Disabling the internet in the office."),
-                                "Configuring 'Guardrails' at the Amazon Q Business application level.",
+                                new Array(
+                                    "The lead AI developer.",
+                                    "A legal compliance officer.",
+                                    "A colleague who is completely unfamiliar with the specific topic.",
+                                    "A person who already knows the AI's logic."
+                                ),
+                                "A colleague who is completely unfamiliar with the specific topic.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q11",
-                                "In the context of the 'Center of Excellence' (CoE), what is meant by 'Evangelism and Adoption'?",
+// Section 3: Governance, Ethics & Implementation
+test.AddQuestion( new Question ("f_q11",
+                                "In terms of data minimization for accessibility governance, what should an organization prioritize?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("Enforcing strict rules that prevent anyone from building apps.",
-                                          "The process of showcasing successful AI use cases to encourage other departments to innovate with Q Apps.",
-                                          "Converting the company's website to use AI only.",
-                                          "Moving the corporate headquarters to a different city."),
-                                "The process of showcasing successful AI use cases to encourage other departments to innovate with Q Apps.",
+                                new Array(
+                                    "Collecting as much biometric data as possible.",
+                                    "Storing only the minimum amount of preference data necessary to provide an accessible interface.",
+                                    "Keeping user preference data indefinitely.",
+                                    "Sharing user disability status with all employees."
+                                ),
+                                "Storing only the minimum amount of preference data necessary to provide an accessible interface.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q12",
-                                "Why would a user prefer to use an 'Admin Curated' app over a newly created one in the library?",
+test.AddQuestion( new Question ("f_q12",
+                                "In an enterprise governance model for AI, when should an 'Accessibility Review' ideally take place?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("Because curated apps have more colorful icons.",
-                                          "Because it signals that the app has been verified for accuracy, security, and quality by the organization's IT or AI specialists.",
-                                          "Because curated apps are the only ones that work on Fridays.",
-                                          "Because it is required by law to only use curated apps."),
-                                "Because it signals that the app has been verified for accuracy, security, and quality by the organization's IT or AI specialists.",
+                                new Array(
+                                    "Only after a legal complaint has been filed.",
+                                    "At every stage of the app lifecycle, from design to deployment.",
+                                    "Only once every five years.",
+                                    "Never; AI accessibility is the responsibility of the end-user."
+                                ),
+                                "At every stage of the app lifecycle, from design to deployment.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q13",
-                                "Which step in the 'Human-in-the-loop' workflow is most important for maintaining high professional standards in AI-generated reports?",
+test.AddQuestion( new Question ("f_q13",
+                                "Which sharing model in Amazon Q Apps ensures that a tool has been vetted and is available to every employee in the company?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("Automating the email delivery of every AI output without reading it.",
-                                          "The critical review and fact-checking of the AI's output by a human subject matter expert before the content is used.",
-                                          "Increasing the font size of the report.",
-                                          "Using the AI to generate the exact same report every day."),
-                                "The critical review and fact-checking of the AI's output by a human subject matter expert before the content is used.",
+                                new Array(
+                                    "Personal sharing only",
+                                    "Team-level sharing",
+                                    "Organization-wide publishing",
+                                    "Restricted API access"
+                                ),
+                                "Organization-wide publishing",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q14",
-                                "Scenario: You have updated a popular app to use a new data source, but you want to revert to the previous version because of a bug. How does Q Apps facilitate this?",
+test.AddQuestion( new Question ("f_q14",
+                                "Which technical challenge is unique to the 'streaming' nature of Generative AI outputs in terms of accessibility?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("By requiring you to rebuild the app from scratch.",
-                                          "Through built-in versioning that allows creators to manage and deploy specific iterations of their applications.",
-                                          "By automatically deleting the bug.",
-                                          "By calling AWS support to fix the code."),
-                                "Through built-in versioning that allows creators to manage and deploy specific iterations of their applications.",
+                                new Array(
+                                    "The file size of the AI model is too large.",
+                                    "Ensuring that real-time text updates are properly announced to screen readers via ARIA live regions.",
+                                    "The cost of the GPU used for inference.",
+                                    "The length of the user's password."
+                                ),
+                                "Ensuring that real-time text updates are properly announced to screen readers via ARIA live regions.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q15",
-                                "From a business perspective, how does reducing the 'Time-to-Value' for custom AI tools impact organizational agility?",
+test.AddQuestion( new Question ("f_q15",
+                                "How does a 'check-the-box' mentality negatively impact AI accessibility initiatives?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("It slows down the organization by creating too many tools.",
-                                          "It allows teams to rapidly build and deploy solutions to emerging problems in hours rather than months.",
-                                          "It has no effect on agility.",
-                                          "It makes the organization more rigid and less likely to change."),
-                                "It allows teams to rapidly build and deploy solutions to emerging problems in hours rather than months.",
+                                new Array(
+                                    "It leads to too much innovation in the space.",
+                                    "It treats accessibility as a one-time compliance task rather than an ongoing design philosophy.",
+                                    "It makes the applications too easy to use for everyone.",
+                                    "It reduces the number of AI servers required."
+                                ),
+                                "It treats accessibility as a one-time compliance task rather than an ongoing design philosophy.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q16",
-                                "Can an Amazon Q App interact with external systems like Jira or Salesforce, and if so, how?",
+// Section 4: Scenario-Based and Application Questions
+test.AddQuestion( new Question ("f_q16",
+                                "Scenario: A team creates an AI app to summarize technical manuals. They find that the AI often uses complex jargon in its summaries. Which accessibility principle is being violated?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("No, it can only read static PDF files.",
-                                          "Yes, by utilizing 'Plugin Cards' that connect to pre-configured Amazon Q Business extensions.",
-                                          "Yes, but only if the user writes custom Java code for the integration.",
-                                          "No, external integrations are blocked for security reasons."),
-                                "Yes, by utilizing 'Plugin Cards' that connect to pre-configured Amazon Q Business extensions.",
+                                new Array(
+                                    "Operability",
+                                    "Understandability",
+                                    "Robustness",
+                                    "Perceivability"
+                                ),
+                                "Understandability",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q17",
-                                "In the Natural Language App Builder, if the generated app structure isn't exactly what you wanted, what is the next logical step?",
+test.AddQuestion( new Question ("f_q17",
+                                "Scenario: An employee with a motor impairment wants to build an AI tool to help with email triaging. Why is Amazon Q Apps an appropriate tool for them?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("Deleting the AWS account.",
-                                          "Manually refining the cards, prompts, and inputs in the visual editor to fine-tune the app's behavior.",
-                                          "Giving up on the project.",
-                                          "Using a different web browser."),
-                                "Manually refining the cards, prompts, and inputs in the visual editor to fine-tune the app's behavior.",
+                                new Array(
+                                    "It requires extensive typing of complex code.",
+                                    "It offers a no-code, card-based interface that reduces the physical effort of application building.",
+                                    "It is only available on desktop computers with specialized mice.",
+                                    "It does not require an internet connection."
+                                ),
+                                "It offers a no-code, card-based interface that reduces the physical effort of application building.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q18",
-                                "Scenario: A team needs an app that analyzes a customer's mood from an email and then suggests a personalized response. What is the most efficient card configuration?",
+test.AddQuestion( new Question ("f_q18",
+                                "Which of the following is a 'Business Advantage' of investing in AI accessibility?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("One single Query Card that does everything.",
-                                          "An Input Card (Email text), a Query Card (Sentiment Analysis), and a second Query Card (Response Generation) that uses the sentiment as an input.",
-                                          "A Plugin Card for Salesforce and nothing else.",
-                                          "Three separate Input Cards for the same email."),
-                                "An Input Card (Email text), a Query Card (Sentiment Analysis), and a second Query Card (Response Generation) that uses the sentiment as an input.",
+                                new Array(
+                                    "Increased legal risk from new regulations.",
+                                    "Higher employee turnover among disabled staff.",
+                                    "Access to a wider talent pool and improved productivity across the entire workforce.",
+                                    "Slower development cycles due to testing."
+                                ),
+                                "Access to a wider talent pool and improved productivity across the entire workforce.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q19",
-                                "If a security auditor needs to investigate whether sensitive data was accessed by an unauthorized app, which administrative tool provides the necessary forensic trail?",
+test.AddQuestion( new Question ("f_q19",
+                                "What is the primary risk of 'AI Hallucinations' in the context of accessibility tools?",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("The Q Apps Library description field.",
-                                          "Detailed Audit Logs and Monitoring integrated with AWS CloudTrail and CloudWatch.",
-                                          "The app creator's personal email.",
-                                          "The 'Help' menu in the app."),
-                                "Detailed Audit Logs and Monitoring integrated with AWS CloudTrail and CloudWatch.",
+                                new Array(
+                                    "They make the interface look less professional.",
+                                    "They can provide 'accessible misinformation' that appears correctly formatted but is factually wrong.",
+                                    "They increase the power consumption of the user's device.",
+                                    "They disable the screen reader's volume control."
+                                ),
+                                "They can provide 'accessible misinformation' that appears correctly formatted but is factually wrong.",
                                 "obj_final")
                 );
 
-test.AddQuestion( new Question ("final_q20",
-                                "Which of the following best describes the 'Feedback Loop' in Amazon Q Apps?",
+test.AddQuestion( new Question ("f_q20",
+                                "In the future, 'Multi-Modal' AI accessibility will allow users to:",
                                 QUESTION_TYPE_CHOICE,
-                                new Array("The way the AI's fans make noise.",
-                                          "The ability for users to rate and provide feedback on apps in the library, helping creators improve their tools over time.",
-                                          "An error message that repeats infinitely.",
-                                          "The sound the computer makes when an app is finished building."),
-                                "The ability for users to rate and provide feedback on apps in the library, helping creators improve their tools over time.",
+                                new Array(
+                                    "Use only text to interact with the system.",
+                                    "Switch seamlessly between voice, text, and gesture based on their immediate needs and abilities.",
+                                    "Avoid using AI altogether.",
+                                    "Pay for AI services using multiple types of currency."
+                                ),
+                                "Switch seamlessly between voice, text, and gesture based on their immediate needs and abilities.",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("f_q21",
+                                "Which type of 'bias' refers to an AI system that lacks representation or understanding of the communication styles of disabled communities?",
+                                QUESTION_TYPE_CHOICE,
+                                new Array(
+                                    "Network bias",
+                                    "Dataset/Algorithmic bias",
+                                    "Hardware bias",
+                                    "Browser bias"
+                                ),
+                                "Dataset/Algorithmic bias",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("f_q22",
+                                "When an AI system is described as 'Robust' in an accessibility audit, what has been confirmed?",
+                                QUESTION_TYPE_CHOICE,
+                                new Array(
+                                    "The system is physically strong and cannot be broken.",
+                                    "The content can be interpreted reliably by varied assistive technologies and user agents.",
+                                    "The system uses a large amount of computer memory.",
+                                    "The system is only accessible to a few specialized users."
+                                ),
+                                "The content can be interpreted reliably by varied assistive technologies and user agents.",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("f_q23",
+                                "Why should enterprises avoid over-reliance on third-party accessibility 'overlays' for their AI tools?",
+                                QUESTION_TYPE_CHOICE,
+                                new Array(
+                                    "They are generally too cheap to be effective.",
+                                    "They often fail to fix underlying design barriers and can conflict with the user's own assistive software.",
+                                    "They make the AI's response too accurate.",
+                                    "They are required by law to be avoided."
+                                ),
+                                "They often fail to fix underlying design barriers and can conflict with the user's own assistive software.",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("f_q24",
+                                "What is 'Agentic Remediation' in the future of AI?",
+                                QUESTION_TYPE_CHOICE,
+                                new Array(
+                                    "A legal process for suing AI companies.",
+                                    "AI agents that proactively identify and fix accessibility gaps in enterprise content.",
+                                    "A method for manually writing alt-text for every image.",
+                                    "The process of training AI on smaller datasets."
+                                ),
+                                "AI agents that proactively identify and fix accessibility gaps in enterprise content.",
+                                "obj_final")
+                );
+
+test.AddQuestion( new Question ("f_q25",
+                                "The 'Inclusion by Design' philosophy encourages organizations to:",
+                                QUESTION_TYPE_CHOICE,
+                                new Array(
+                                    "Wait until after product launch to consider accessibility.",
+                                    "Treat accessibility as an optional 'premium' feature.",
+                                    "Consider accessibility as a fundamental requirement from the very beginning of the development process.",
+                                    "Only design for users who have no disabilities."
+                                ),
+                                "Consider accessibility as a fundamental requirement from the very beginning of the development process.",
                                 "obj_final")
                 );

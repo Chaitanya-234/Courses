@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 2: Building Accessible AI Solutions - Designing with Cards</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Designing Accessible Apps with Cards</h1>
+
+<div class="content-section">
+    <h2>The Card Metaphor and Screen Readers</h2>
+    <p>Amazon Q Apps uses a system of "cards" to organize information and actions. For users of screen readers, this modular approach is highly beneficial because it creates distinct landmarks within the application. However, as a builder, you must ensure that these cards are configured in a logical sequence to maintain a clear narrative flow.</p>
+
+    <h3>Optimizing Different Card Types for Accessibility</h3>
+    <table>
+        <tr>
+            <th>Card Type</th>
+            <th>Accessibility Best Practices</th>
+        </tr>
+        <tr>
+            <td class="rowheader">Input Card</td>
+            <td>Provide clear, concise labels for all input fields. Use the "Instruction" field to give examples of valid input, which helps users with cognitive disabilities.</td>
+        </tr>
+        <tr>
+            <td class="rowheader">Query Card</td>
+            <td>Ensure the query logic is focused. Broad, unfocused queries can result in "information overload," which is a significant barrier for many users.</td>
+        </tr>
+        <tr>
+            <td class="rowheader">Output Card</td>
+            <td>Configure the output to use Markdown headers and lists. This ensures that screen reader users can navigate the generated content efficiently.</td>
+        </tr>
+    </table>
+
+    <h2>Prompt Engineering for Inclusive Outputs</h2>
+    <p>The "Query" and "Content Creator" cards in Amazon Q Apps rely on prompts to generate their results. "Prompt Engineering" is the most effective tool a builder has for ensuring the AI's output is accessible.</p>
+
+    <h3>The "System Prompt" Strategy</h3>
+    <p>When configuring an output card, you can include specific instructions in the prompt to enforce accessibility standards. Examples of effective accessibility-focused instructions include:</p>
+    <ul>
+        <li><em>"Please provide the output in plain English, avoiding complex metaphors or jargon."</em></li>
+        <li><em>"Structure the response using clear headings (H1, H2) and bullet points."</em></li>
+        <li><em>"If the data includes numbers, present them in a simple table with descriptive headers."</em></li>
+        <li><em>"Summarize long paragraphs into 2-3 key sentences to improve readability."</em></li>
+    </ul>
+
+    <h2>Managing User Interaction</h2>
+    <p>Accessibility also involves how users interact with the app's components. In Amazon Q Apps, you should consider:</p>
+    <ul>
+        <li><strong>Selection Cards:</strong> Use these instead of free-text input when there are limited valid options. This reduces the motor and cognitive effort required to use the app.</li>
+        <li><strong>Conditional Logic:</strong> While Q Apps handles much of the complexity, ensure that the flow between cards is intuitive. Avoid "loops" or confusing jumps that could disorient a user.</li>
+        <li><strong>Feedback Mechanisms:</strong> If a card fails to produce a result (e.g., no data found), ensure the error message is helpful and provides a clear "next step" for the user.</li>
+    </ul>
+
+    <h3>Visual Design and Layout</h3>
+    <p>While the Q Apps framework provides a consistent UI, builders can often choose how to arrange cards. A vertical, single-column layout is generally the most accessible, as it provides a predictable reading order for both sighted users and those using assistive technology. Avoid complex horizontal arrangements that might require excessive scrolling or "zooming" on mobile devices.</p>
+</div>
+
+<div class="summary-section">
+    <h3>Key Takeaways</h3>
+    <ul>
+        <li>Modular card-based design provides predictable landmarks for screen reader users.</li>
+        <li>Prompt engineering is essential for instructing the AI to generate accessible content.</li>
+        <li>Selection cards and structured layouts reduce the physical and cognitive effort for users.</li>
+    </ul>
+</div>
+
+</body>
+</html>
