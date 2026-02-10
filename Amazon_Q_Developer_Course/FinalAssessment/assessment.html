@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <title>Final Comprehensive Assessment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style type="text/css" media="screen">
 		@import url( ../shared/style.css );
 	</style>
@@ -12,7 +13,7 @@
 <h1>Final Comprehensive Assessment</h1>
 <p>This final assessment covers all modules. You need 70% to pass and complete the course.</p>
 
-<iframe src="../shared/assessmenttemplate.html?questions=FinalAssessment" width="100%" height="600" frameborder="0"></iframe>
+<iframe src="../shared/assessmenttemplate.html?questions=FinalAssessment" width="100%" height="800" frameborder="0" style="min-height: 80vh;"></iframe>
 
 <script type="text/javascript">
 function RecordTest(score){
@@ -22,6 +23,9 @@ function RecordTest(score){
         parent.ScormProcessSetValue("cmi.core.score.max", "100");
         if (score >= 70){
             parent.ScormProcessSetValue("cmi.core.lesson_status", "passed");
+            // Also invoke parent check to unlock/lock navigation if needed
+            // But for final assessment, usually we just complete.
+            // The launchpage handles completion based on lesson_status or currentPage.
         } else {
             parent.ScormProcessSetValue("cmi.core.lesson_status", "failed");
         }

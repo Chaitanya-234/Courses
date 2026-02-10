@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 2: The Dev Agent & Autonomous Coding</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Module 2: The Dev Agent & Autonomous Coding</h1>
+
+<div class="module-content">
+    <h2>Beyond Code Completion</h2>
+    <p>While code completion is helpful for writing individual lines or functions, Amazon Q Developer introduces a more powerful paradigm: <strong>Autonomous Agents</strong>. The "Dev Agent" (often invoked via <code>/dev</code> in the chat interface) is capable of planning and executing complex multi-file changes based on high-level natural language instructions.</p>
+
+    <h2>The Feature Development Workflow</h2>
+    <p>Developing a new feature typically involves understanding the existing codebase, planning the logic, creating new files, modifying existing ones, and writing tests. The Dev Agent automates this entire workflow.</p>
+
+    <h3>How It Works</h3>
+    <ol>
+        <li><strong>Prompting:</strong> You describe the feature you want to build in plain English. For example: "Add a new API endpoint <code>/users/profile</code> that accepts a user ID and returns their profile data from DynamoDB."</li>
+        <li><strong>Planning:</strong> The agent analyzes your current project structure and source code to understand context. It then generates a step-by-step plan for implementation.</li>
+        <li><strong>Review:</strong> You review the proposed plan. You can accept it or provide feedback to refine it (e.g., "Use the existing User model instead of creating a new one").</li>
+        <li><strong>Execution:</strong> Once approved, the agent writes the code, creating new files and updating existing ones across your project.</li>
+        <li><strong>Verification:</strong> It can even generate unit tests to verify the new functionality.</li>
+    </ol>
+
+    <h2>Specialized Agents</h2>
+    <p>Amazon Q includes specialized agents optimized for specific tasks:</p>
+    <ul>
+        <li><strong>/dev:</strong> General-purpose feature implementation.</li>
+        <li><strong>/transform:</strong> Specifically for upgrading languages and frameworks (covered in the next section).</li>
+        <li><strong>/review:</strong> (In beta) For reviewing code changes and pull requests.</li>
+        <li><strong>/test:</strong> Focused on generating comprehensive test suites.</li>
+    </ul>
+
+    <h2>Best Practices for Autonomous Coding</h2>
+    <p>To get the best results from the Dev Agent:</p>
+    <ul>
+        <li><strong>Be Specific:</strong> The more detailed your initial prompt, the better the plan. Mention specific file names or data structures if they are relevant.</li>
+        <li><strong>Iterate:</strong> Treat the agent as a junior developer. Review its plan carefully and ask for adjustments before it starts coding.</li>
+        <li><strong>Context Matters:</strong> Ensure your project builds and runs before asking the agent to make changes, as it relies on a valid project state to understand dependencies.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>The Dev Agent represents a significant leap forward in AI-assisted development. By delegating the "heavy lifting" of implementation to the AI, developers can focus on architectural decisions and business logic, dramatically reducing the time required to ship new features.</p>
+</div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

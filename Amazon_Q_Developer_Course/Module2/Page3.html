@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 2: Enterprise Customization & Administration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Module 2: Enterprise Customization & Administration</h1>
+
+<div class="module-content">
+    <h2>Enterprise Customization</h2>
+    <p>A key differentiator of Amazon Q Developer for enterprise customers is the ability to <strong>Customize</strong> its suggestions. While the base model is trained on public code, your organization likely has proprietary libraries, internal APIs, and specific coding standards that are not public knowledge.</p>
+
+    <h3>How Customization Works</h3>
+    <p>Using Retrieval Augmented Generation (RAG), Amazon Q can securely index your private code repositories (e.g., in AWS CodeCommit, GitHub, or GitLab). When a developer writes code that references internal libraries, Amazon Q retrieves relevant snippets from your indexed codebase and uses them as context.</p>
+
+    <p>This results in suggestions that:</p>
+    <ul>
+        <li>Use internal APIs correctly (e.g., calling <code>CompanyAuth.validate()</code> instead of a generic auth function).</li>
+        <li>Adhere to team coding styles and conventions.</li>
+        <li>Accelerate onboarding for new hires by exposing them to existing patterns.</li>
+    </ul>
+
+    <h2>Administrative Controls</h2>
+    <p>Enterprise administrators have granular control over how Amazon Q is used across the organization via the AWS Console.</p>
+
+    <h3>Policy Management</h3>
+    <ul>
+        <li><strong>Block Suggestions with Public References:</strong> Ensure that no code suggestions match public open-source code unless the license is explicitly allowed. This mitigates IP risk.</li>
+        <li><strong>Limit Code Scanning:</strong> Define which repositories or projects are scanned for security vulnerabilities.</li>
+        <li><strong>Access Control:</strong> Grant or revoke access to Amazon Q features based on IAM roles and groups.</li>
+    </ul>
+
+    <h3>Monitoring and Reporting</h3>
+    <p>Administrators can view comprehensive dashboards showing:</p>
+    <ul>
+        <li><strong>Adoption:</strong> Number of active users and suggestion acceptance rates.</li>
+        <li><strong>Productivity Impact:</strong> Metrics on lines of code accepted and time saved (estimated).</li>
+        <li><strong>Security Findings:</strong> Aggregate view of vulnerabilities detected across the organization's codebases.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>For large organizations, generic AI assistance is not enough. Amazon Q Developer provides the customization and control necessary to integrate AI into enterprise workflows safely and effectively. By tailoring the AI to your specific codebase and enforcing strict governance policies, you can maximize the benefits of generative AI while minimizing risk.</p>
+</div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

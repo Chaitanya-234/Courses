@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 3: Limitations & Risk Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Module 3: Limitations & Risk Management</h1>
+
+<div class="module-content">
+    <h2>Navigating the Challenges</h2>
+    <p>While the advantages of Amazon Q Developer are compelling, it is equally important to understand its limitations and risks. AI models, by nature, are statistical predictors, not perfect oracles. Effective use requires balancing automation with human oversight.</p>
+
+    <h3>Technical Limitations</h3>
+    <ul>
+        <li><strong>Context Window Constraints:</strong> LLMs have a "context window," meaning they can only "see" a limited amount of code at once. While Amazon Q uses sophisticated context management, it may not fully understand deeply nested dependencies across hundreds of files in a massive monorepo.</li>
+        <li><strong>Hallucinations:</strong> Like all generative AI, Amazon Q can sometimes generate code that looks syntactically correct but is logically flawed or references non-existent libraries (hallucinations). It is a tool to <em>assist</em>, not replace, developer judgment.</li>
+        <li><strong>Outdated Knowledge:</strong> Although foundation models are regularly updated, there may be a lag between the release of a new library version and the model's awareness of it.</li>
+    </ul>
+
+    <h3>Implementation Risks</h3>
+    <ul>
+        <li><strong>Over-Reliance:</strong> There is a risk that developers, especially juniors, might accept suggestions blindly without understanding the underlying logic. This can lead to "copy-paste" bugs and a degradation of deep system knowledge.</li>
+        <li><strong>Security Configuration:</strong> While Amazon Q is secure by design, misconfiguring IAM permissions or allowing overly broad access can expose internal code or infrastructure details if not managed properly.</li>
+    </ul>
+
+    <h3>Ethical, Legal, and Privacy Concerns</h3>
+    <ul>
+        <li><strong>Intellectual Property (IP) Risk:</strong> The possibility of generating code that infringes on existing copyrights is a valid concern. Amazon Q addresses this with reference tracking and filtering, but organizations must actively configure and monitor these settings.</li>
+        <li><strong>Data Privacy:</strong> Organizations must be comfortable with code snippets being sent to the cloud for processing. While AWS provides strong guarantees (especially for Pro tier), compliance with strict data residency laws (like GDPR) requires careful review of service terms.</li>
+        <li><strong>Bias:</strong> LLMs are trained on public code, which may contain biases or poor coding practices. Amazon Q filters much of this out, but developers should remain vigilant against patterns that might introduce subtle issues.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>Understanding these limitations is not meant to discourage adoption but to foster responsible usage. By acknowledging that AI can hallucinate and implementing rigorous code review processes, teams can mitigate these risks and harness the power of Amazon Q safely.</p>
+</div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 1: Setup & Configuration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Module 1: Setup & Configuration</h1>
+
+<div class="module-content">
+    <h2>Setup & Configuration Overview</h2>
+    <p>Before diving into coding, getting Amazon Q Developer properly configured is essential. The setup process varies slightly depending on whether you are using the Individual Tier (free) or the Professional Tier (enterprise), but the core steps remain consistent: installing the IDE extension and authenticating with AWS.</p>
+
+    <h3>Authentication Methods</h3>
+    <p>Amazon Q Developer supports two primary authentication mechanisms:</p>
+    <ul>
+        <li><strong>AWS Builder ID (Individual):</strong> A personal profile for developers. It's free, tied to your email, and independent of any specific AWS account or company. Best for individual developers exploring the tool.</li>
+        <li><strong>IAM Identity Center (Professional):</strong> Enterprise-grade authentication managed by your organization's IT department. It integrates with your existing corporate directory (like Active Directory or Okta) and allows centralized management of access policies. This method unlocks the advanced enterprise features of the Pro tier.</li>
+    </ul>
+
+    <h2>Detailed Explanation: IDE Integration</h2>
+    <h3>Supported Environments</h3>
+    <p>Amazon Q is available across a wide range of development environments:</p>
+    <ul>
+        <li><strong>Visual Studio Code:</strong> Install the "AWS Toolkit" extension.</li>
+        <li><strong>JetBrains IDEs (IntelliJ IDEA, PyCharm, WebStorm, etc.):</strong> Install the "AWS Toolkit" plugin.</li>
+        <li><strong>Visual Studio 2022:</strong> Install the "AWS Toolkit for Visual Studio 2022".</li>
+        <li><strong>AWS Cloud9:</strong> Pre-installed in AWS's cloud-based IDE.</li>
+        <li><strong>Command Line Interface (CLI):</strong> Integrated via "Amazon Q for command line" (formerly Fig).</li>
+        <li><strong>macOS Terminal:</strong> Through the Amazon Q desktop app.</li>
+    </ul>
+
+    <h3>Step-by-Step Configuration (VS Code Example)</h3>
+    <ol>
+        <li>Open VS Code and navigate to the Extensions marketplace.</li>
+        <li>Search for "AWS Toolkit" and install it.</li>
+        <li>Click on the AWS icon in the sidebar.</li>
+        <li>Under "Amazon Q + CodeWhisperer," select "Start".</li>
+        <li>Choose "Use for Free with AWS Builder ID" or "Use with IAM Identity Center" based on your subscription.</li>
+        <li>Follow the browser prompts to authenticate and authorize the extension.</li>
+    </ol>
+    <p>Once authenticated, you will see a status indicator showing that Amazon Q is active. You can then configure settings such as "Share Code for Service Improvement" (opt-out available for Pro users) and reference tracking behavior.</p>
+
+    <h2>Enterprise Administration</h2>
+    <p>For organizations, setup involves more than just individual IDE plugins. Administrators use the AWS Management Console to:</p>
+    <ul>
+        <li><strong>Enable Amazon Q:</strong> Activate the service in the desired AWS Region.</li>
+        <li><strong>Manage Users:</strong> Assign licenses to users via IAM Identity Center.</li>
+        <li><strong>Define Policies:</strong> Control which suggestions are allowed (e.g., block suggestions with references to code under specific licenses).</li>
+        <li><strong>Monitor Usage:</strong> Track adoption metrics and security scan findings through a dashboard.</li>
+    </ul>
+
+    <h2>Practical Application: Customization</h2>
+    <p>Enterprise administrators can also configure <strong>Customizations</strong>. This advanced feature allows Amazon Q to be aware of your organization's private libraries, APIs, and coding standards. By pointing Amazon Q to your private repositories (e.g., in CodeCommit or GitHub), it can learn your internal patterns and suggest code that aligns with your company's specific practices, significantly boosting developer onboarding speed.</p>
+
+    <h2>Summary</h2>
+    <p>Proper setup is the foundation of a productive experience with Amazon Q Developer. Whether you are an individual using AWS Builder ID or part of a large enterprise using IAM Identity Center, the integration is seamless across major IDEs. Understanding the administrative controls ensures that the tool is used securely and effectively at scale.</p>
+</div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

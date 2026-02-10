@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 3: Best Practices for AI-Assisted Development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Module 3: Best Practices for AI-Assisted Development</h1>
+
+<div class="module-content">
+    <h2>Maximizing Value While Minimizing Risk</h2>
+    <p>To truly leverage Amazon Q Developer as a productivity multiplier, developers must adopt new habits and workflows. The following best practices will help you get the most out of the tool while maintaining high code quality.</p>
+
+    <h3>1. Treat Amazon Q as a Junior Pair Programmer</h3>
+    <p>Always assume the AI's suggestions are a starting point, not the final answer. Just as you would review code from a junior developer, critically examine every suggestion for:</p>
+    <ul>
+        <li>Correctness (does it handle edge cases?)</li>
+        <li>Efficiency (is there a more performant way?)</li>
+        <li>Security (does it introduce vulnerabilities?)</li>
+    </ul>
+
+    <h3>2. Master "Prompt Engineering" for Code</h3>
+    <p>The quality of the output depends heavily on the quality of your input (context). To get better suggestions:</p>
+    <ul>
+        <li><strong>Open Relevant Files:</strong> Amazon Q uses open tabs as context. Keep related files (interfaces, utility classes) open.</li>
+        <li><strong>Write Detailed Comments:</strong> Instead of "<code>// sort list</code>", try "<code>// sort list of users by age descending using a custom comparator</code>".</li>
+        <li><strong>Use Meaningful Variable Names:</strong> Clear naming conventions help the AI infer intent.</li>
+    </ul>
+
+    <h3>3. Iterate with the Chat Interface</h3>
+    <p>Don't just rely on inline suggestions. If a suggestion is close but not quite right, highlight it and ask Amazon Q in the chat sidebar: "Can you rewrite this to handle null values?" or "Optimize this loop for large datasets." This interactive refinement is where the real power lies.</p>
+
+    <h3>4. Maintain Rigorous Code Reviews</h3>
+    <p>AI-generated code should go through the same, if not stricter, peer review process as human-written code. Reviewers should specifically look for:</p>
+    <ul>
+        <li>Subtle logic errors that look correct at a glance.</li>
+        <li>Unnecessary complexity or hallucinated imports.</li>
+        <li>Consistency with the rest of the codebase.</li>
+    </ul>
+
+    <h3>5. Leverage Security Scans Regularly</h3>
+    <p>Don't wait for the CI/CD pipeline to catch vulnerabilities. Run Amazon Q's security scans frequently during development, especially after generating large blocks of code. Treat security warnings as blocking issues.</p>
+
+    <h2>Summary</h2>
+    <p>AI-assisted development is a skill in itself. By combining the speed of Amazon Q with human judgment, creativity, and rigorous engineering discipline, you can achieve unprecedented levels of productivity and innovation.</p>
+</div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>
