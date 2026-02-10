@@ -1,8 +1,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amazon Q Apps - No-Code GenAI Application Builder</title>
-    <script src="shared/scormfunctions.js" type="text/javascript"></script>
+    <script src="scormfunctions.js" type="text/javascript"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -78,6 +80,25 @@
             transform: translateY(0);
         }
         
+        @media (max-width: 600px) {
+            #navDiv {
+                bottom: 1rem;
+                right: 0;
+                left: 0;
+                justify-content: center;
+                background: rgba(255, 255, 255, 0.9);
+                padding: 1rem;
+                backdrop-filter: blur(10px);
+                box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.05);
+            }
+
+            #navDiv input[type="button"] {
+                min-width: 80px;
+                padding: 0.75rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -145,6 +166,26 @@
     </style>
     <script type="text/javascript">
 
+    // EXPOSE RECORD TEST GLOBALLY SO IFRAMES CAN CALL IT
+    window.RecordTest = function(score) {
+        console.log("RecordTest called with score: " + score);
+        ScormProcessSetValue("cmi.core.score.raw", score);
+        ScormProcessSetValue("cmi.core.score.min", "0");
+        ScormProcessSetValue("cmi.core.score.max", "100");
+
+        if (score >= 70){
+            // If we're on the final assessment and user passed, mark as completed
+            if (currentPage == (pageArray.length - 1)) {
+                ScormProcessSetValue("cmi.core.lesson_status", "completed");
+            } else {
+                ScormProcessSetValue("cmi.core.lesson_status", "passed");
+            }
+        }
+        else{
+            ScormProcessSetValue("cmi.core.lesson_status", "failed");
+        }
+    };
+
     function showModal(title, message, showCancel = false) {
         return new Promise((resolve) => {
             const overlay = document.createElement('div');
@@ -189,31 +230,28 @@
         return String(val);
     }
 
-        var pageArray = new Array(14);
+        var pageArray = new Array(9);
 
     // Course Introduction
-    pageArray[0] = "Introduction/Introduction.html";
+    pageArray[0] = "../Introduction/Introduction.html";
 
-    // Module 1: Principles of AI Accessibility
-    pageArray[1] = "Module1_Accessibility_Principles/Overview.html";
-    pageArray[2] = "Module1_Accessibility_Principles/InclusiveDesign.html";
-    pageArray[3] = "Module1_Accessibility_Principles/Standards.html";
-    pageArray[4] = "Assessment1/assessment.html";
+    // Module 1: AI Accessibility Revolution & Amazon Q Apps Fundamentals
+    pageArray[1] = "../Module1/Module1.html";
+    pageArray[2] = "../Module1/assessment.html";
 
-    // Module 2: Building Accessible AI Solutions with Amazon Q Apps
-    pageArray[5] = "Module2_Building_Accessible_Apps/QAppsRole.html";
-    pageArray[6] = "Module2_Building_Accessible_Apps/DesignForAccessibility.html";
-    pageArray[7] = "Module2_Building_Accessible_Apps/Implementation.html";
-    pageArray[8] = "Assessment2/assessment.html";
+    // Module 2: Building and Managing Enterprise Applications
+    pageArray[3] = "../Module2/Module2.html";
+    pageArray[4] = "../Module2/assessment.html";
 
-    // Module 3: Governance, Ethics, and Future of AI Accessibility
-    pageArray[9] = "Module3_Governance_and_Ethics/Governance.html";
-    pageArray[10] = "Module3_Governance_and_Ethics/ProsAndCons.html";
-    pageArray[11] = "Module3_Governance_and_Ethics/FutureTrends.html";
-    pageArray[12] = "Assessment3/assessment.html";
+    // Module 3: Advanced Governance, Security, and Enterprise Scaling
+    pageArray[5] = "../Module3/Module3.html";
+    pageArray[6] = "../Module3/assessment.html";
+
+    // Pros and Cons Section
+    pageArray[7] = "../ProsCons/ProsCons.html";
 
     // Final Comprehensive Assessment
-    pageArray[13] = "FinalAssessment/assessment.html"; // 25 unique questions
+    pageArray[8] = "../FinalAssessment/assessment.html";
 
     var currentPage = null;
     var startTimeStamp = null;
@@ -278,16 +316,19 @@
         nextButton.style.opacity = "1";
         prevButton.style.cursor = "pointer";
         nextButton.style.cursor = "pointer";
+        nextButton.style.display = "inline-block"; // Ensure visible by default
 
         if (currentPage == 0){
             prevButton.disabled = true;
             prevButton.style.opacity = "0.5";
             prevButton.style.cursor = "not-allowed";
+            prevButton.style.display = "none"; // Hide Previous on first page
         }
         else if (currentPage == (pageArray.length - 1)){
             nextButton.disabled = true;
             nextButton.style.opacity = "0.5";
             nextButton.style.cursor = "not-allowed";
+            nextButton.style.display = "none"; // Hide Next on the last page as per user request
             reachedEnd = true;
         }
     }
@@ -385,23 +426,6 @@
         }
     }
 
-    function RecordTest(score){
-        ScormProcessSetValue("cmi.core.score.raw", score);
-        ScormProcessSetValue("cmi.core.score.min", "0");
-        ScormProcessSetValue("cmi.core.score.max", "100");
-
-        if (score >= 70){
-            // If we're on the final assessment and user passed, mark as completed
-            if (currentPage == (pageArray.length - 1)) {
-                ScormProcessSetValue("cmi.core.lesson_status", "completed");
-            } else {
-                ScormProcessSetValue("cmi.core.lesson_status", "passed");
-            }
-        }
-        else{
-            ScormProcessSetValue("cmi.core.lesson_status", "failed");
-        }
-    }
 
     function ConvertMilliSecondsToSCORMTime(intTotalMilliseconds, blnIncludeFraction){
 	    var intHours;

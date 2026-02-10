@@ -22,21 +22,16 @@
 	<resources>
 		<resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="shared/launchpage.html">
       <file href="Introduction/Introduction.html"/>
-      <file href="Module1_Accessibility_Principles/Overview.html"/>
-      <file href="Module1_Accessibility_Principles/InclusiveDesign.html"/>
-      <file href="Module1_Accessibility_Principles/Standards.html"/>
-      <file href="Module1_Accessibility_Principles/questions.js"/>
-      <file href="Assessment1/assessment.html"/>
-      <file href="Module2_Building_Accessible_Apps/QAppsRole.html"/>
-      <file href="Module2_Building_Accessible_Apps/DesignForAccessibility.html"/>
-      <file href="Module2_Building_Accessible_Apps/Implementation.html"/>
-      <file href="Module2_Building_Accessible_Apps/questions.js"/>
-      <file href="Assessment2/assessment.html"/>
-      <file href="Module3_Governance_and_Ethics/Governance.html"/>
-      <file href="Module3_Governance_and_Ethics/ProsAndCons.html"/>
-      <file href="Module3_Governance_and_Ethics/FutureTrends.html"/>
-      <file href="Module3_Governance_and_Ethics/questions.js"/>
-      <file href="Assessment3/assessment.html"/>
+      <file href="Module1/Module1.html"/>
+      <file href="Module1/assessment.html"/>
+      <file href="Module1/questions.js"/>
+      <file href="Module2/Module2.html"/>
+      <file href="Module2/assessment.html"/>
+      <file href="Module2/questions.js"/>
+      <file href="Module3/Module3.html"/>
+      <file href="Module3/assessment.html"/>
+      <file href="Module3/questions.js"/>
+      <file href="ProsCons/ProsCons.html"/>
       <file href="FinalAssessment/assessment.html"/>
       <file href="FinalAssessment/questions.js"/>
       <file href="shared/assessmenttemplate.html"/>
