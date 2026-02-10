@@ -22,12 +22,25 @@
 	<resources>
 		<resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="shared/launchpage.html">
       <file href="Introduction/Introduction.html"/>
+      <file href="Introduction/ModelOverview.html"/>
+      <file href="Introduction/ProsAndCons.html"/>
       <file href="APIFundamentals/MessagesAPI.html"/>
       <file href="APIFundamentals/StreamingBatching.html"/>
+      <file href="APIFundamentals/ErrorHandling.html"/>
+      <file href="APIFundamentals/SecurityCompliance.html"/>
+      <file href="APIFundamentals/assessment.html"/>
       <file href="APIFundamentals/questions.js"/>
       <file href="ToolUseStructured/DefiningTools.html"/>
       <file href="ToolUseStructured/StructuredOutput.html"/>
+      <file href="ToolUseStructured/AdvancedPatterns.html"/>
+      <file href="ToolUseStructured/BestPractices.html"/>
+      <file href="ToolUseStructured/assessment.html"/>
       <file href="ToolUseStructured/questions.js"/>
+      <file href="AdvancedCapabilities/VisionCapabilities.html"/>
+      <file href="AdvancedCapabilities/MultimodalBestPractices.html"/>
+      <file href="AdvancedCapabilities/FutureAndAgents.html"/>
+      <file href="AdvancedCapabilities/assessment.html"/>
+      <file href="AdvancedCapabilities/questions.js"/>
       <file href="FinalAssessment/assessment.html"/>
       <file href="FinalAssessment/questions.js"/>
       <file href="shared/assessmenttemplate.html"/>

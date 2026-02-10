@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Prompt Engineering for Tools and Best Practices</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Prompt Engineering for Tools and Best Practices</h1>
+
+<div class="content-section">
+
+<h2>Concept Overview</h2>
+<p>Defining a tool is easy; defining it <em>well</em> is an art. The success of a tool call depends heavily on how clearly you describe its purpose and parameters to the model. This is "Prompt Engineering for Tools." Just as you carefully craft the system prompt for a chatbot, you must craft the `description` fields in your tool definitions to guide the model's reasoning process.</p>
+
+<h2>Detailed Explanation: The Description Field</h2>
+<p>The `description` field in a tool definition is not just a comment for developers—it is the primary instruction the model reads to understand <em>when</em> and <em>how</em> to use the tool. A vague description leads to confusion and hallucinations.</p>
+
+<h3>Writing Effective Tool Descriptions</h3>
+<p>A good tool description should answer three questions:</p>
+<ol>
+    <li><strong>What does this tool do?</strong> Be specific. Instead of "Get data," say "Retrieve the user's order history for the past 90 days."</li>
+    <li><strong>When should it be used?</strong> Explicitly state the trigger conditions. "Use this tool whenever the user asks about the status of a specific order ID."</li>
+    <li><strong>What does it return?</strong> Describe the output format so the model knows what to expect. "Returns a list of order objects containing date, total, and status."</li>
+</ol>
+
+<blockquote>
+// Bad Description
+"get_stock": "Get stock for a ticker."
+
+// Good Description
+"get_stock_price": "Retrieve the current real-time price, daily high/low, and trading volume for a given US stock ticker symbol (e.g., AAPL). Use this when the user asks for market data or specific stock performance."
+</blockquote>
+
+<h2>Technical Breakdown: Preventing Hallucinations</h2>
+<p>Tool hallucinations occur when the model invents parameter values or calls a tool when it shouldn't. You can mitigate this through schema design.</p>
+
+<h3>1. Use Enums for Categorical Data</h3>
+<p>If a parameter has a fixed set of valid values (e.g., "status" can be "active", "pending", or "closed"), <strong>always</strong> use an `enum` in your JSON Schema. This physically prevents the model from generating an invalid string like "ongoing".</p>
+
+<h3>2. Provide Examples in Descriptions</h3>
+<p>For complex string parameters, include examples directly in the description field. "The search query. For example: 'revenue in Q3 2023'."</p>
+
+<h3>3. Chain of Thought (CoT) Prompting with Tools</h3>
+<p>Encourage the model to "think out loud" before calling a tool. By instructing the model to first explain <em>why</em> it needs a tool and what parameters it will use, you force it to reason through the request, reducing impulsive errors.</p>
+
+<h2>Best Practices: Debugging Tool Chains</h2>
+<p>When an agent fails, debugging can be tricky. Follow these steps:</p>
+<ol>
+    <li><strong>Inspect the Raw Request:</strong> Look at the exact JSON payload sent to the API. Did the model hallucinate a parameter?</li>
+    <li><strong>Check the Tool Result:</strong> Did your backend return a cryptic error message? If so, the model might be confused. Return clear, actionable error messages (e.g., "Error: Ticker 'APPL' not found. Did you mean 'AAPL'?") so the model can self-correct.</li>
+    <li><strong>Simplify the Schema:</strong> If the model consistently fails to populate a complex nested object, try flattening the schema or breaking it into two simpler tools.</li>
+</ol>
+
+<h2>Real-World Examples</h2>
+<ul>
+    <li><strong>Complex Query Construction:</strong> A data analyst tool needs a SQL query. Instead of asking the model to write raw SQL (risky), define a tool `build_report(metrics: [], dimensions: [], filters: [])`. The model fills in the high-level intent, and your backend code constructs the safe SQL query.</li>
+    <li><strong>API Wrapper:</strong> When wrapping a complex third-party API (like Jira), don't expose every single parameter. Create a simplified "facade" tool that exposes only the most common fields, reducing cognitive load on the model.</li>
+</ul>
+
+<h2>Key Takeaways</h2>
+<ul>
+    <li>Treat tool descriptions as prompts. Be verbose and specific.</li>
+    <li>Constrain the model with `enum` and rigorous JSON Schema validation.</li>
+    <li>Debugging involves checking both the model's <em>intent</em> (tool call) and the system's <em>response</em> (tool result).</li>
+    <li>Simplify complex tasks by breaking them into smaller, more focused tools.</li>
+</ul>
+
+</div>
+
+<script type="text/javascript">
+// SCORM initialization if needed
+</script>
+</body>
+</html>

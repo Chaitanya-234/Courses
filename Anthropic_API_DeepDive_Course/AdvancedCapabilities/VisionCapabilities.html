@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Vision Capabilities</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+    <h1>Vision Capabilities</h1>
+
+    <h2>| Concept Overview</h2>
+    <p>
+        The Claude 3 family of models (Haiku, Sonnet, and Opus) possesses state-of-the-art computer vision capabilities. This allows the models to process and analyze visual information alongside text, enabling a wide range of multimodal applications. From transcribing handwritten notes to analyzing complex charts and diagrams, vision extends the model's utility beyond simple text processing.
+    </p>
+
+    <h2>| Detailed Explanation: Multimodal Processing</h2>
+    <p>
+        Claude treats images as another form of input token. When you send an image to the API, it is processed by the same underlying model that handles text. This unified architecture allows for seamless reasoning across both modalities. For example, you can ask Claude to "analyze the trend in this chart" or "explain the joke in this meme," and it will synthesize visual features with its textual knowledge base to generate a response.
+    </p>
+    <p>
+        <strong>Supported Formats:</strong> The API currently supports common image formats such as JPEG, PNG, GIF (static first frame), and WebP.
+    </p>
+    <p>
+        <strong>Input Method:</strong> Images are typically provided to the API as base64-encoded strings within the <code>content</code> block of a message. While some integrations might support URLs, the direct API interaction usually requires the binary data to be encoded.
+    </p>
+
+    <h2>| Technical Breakdown: The Message Structure</h2>
+    <p>
+        Integrating vision requires a slight modification to the standard Messages API payload. Instead of a simple string for the user content, you provide an array of content blocks.
+    </p>
+    <ul>
+        <li><strong>Text Block:</strong> Standard text input.</li>
+        <li><strong>Image Block:</strong> Contains the <code>type: "image"</code>, <code>source: { type: "base64", media_type: "image/jpeg", data: "..." }</code>.</li>
+    </ul>
+    <p>
+        <strong>Prompt Engineering with Images:</strong> The position of the image in the conversation history matters. Generally, it is best to place the image <em>before</em> the question or instruction related to it. For example: <code>[Image] "What is described in this diagram?"</code>. This mimics how humans typically review a document before answering questions about it.
+    </p>
+
+    <h2>| Real-World Examples</h2>
+    <ul>
+        <li><strong>Digitizing Documents:</strong> An insurance company uses Claude to automatically transcribe handwritten claim forms and extract key data fields into JSON format.</li>
+        <li><strong>UI/UX Analysis:</strong> A frontend developer uploads a screenshot of a website and asks Claude to convert the design into HTML/CSS code or suggest accessibility improvements.</li>
+        <li><strong>e-Commerce Cataloging:</strong> A retailer uploads product photos, and Claude automatically generates SEO-friendly descriptions, identifies colors and materials, and tags the product for search.</li>
+    </ul>
+
+    <h2>| Key Takeaways</h2>
+    <ul>
+        <li><strong>Multimodality:</strong> Claude 3 models are natively multimodal, processing text and images in a single context window.</li>
+        <li><strong>Base64 Encoding:</strong> Images must be base64 encoded for API transmission.</li>
+        <li><strong>Context Matters:</strong> Placing images before text in the prompt often yields better results.</li>
+        <li><strong>No Facial Recognition:</strong> For privacy and ethical reasons, Claude is designed to avoid identifying real people in images.</li>
+    </ul>
+</body>
+</html>
