@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>AutoGen - Multi-Agent Conversation Framework by Microsoft</title>
-    <script src="shared/scormfunctions.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="scormfunctions.js" type="text/javascript"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         
@@ -192,31 +193,31 @@
     var pageArray = new Array(17);
 
     // Course Introduction
-    pageArray[0] = "Introduction/Introduction.html";
+    pageArray[0] = "../Introduction/Introduction.html";
 
     // Module 1: Core Concepts
-    pageArray[1] = "CoreConcepts/IntroductionToAgents.html";
-    pageArray[2] = "CoreConcepts/AgentCommunication.html";
-    pageArray[3] = "CoreConcepts/Configuration.html";
-    pageArray[4] = "CoreConcepts/AgentCustomization.html";
-    pageArray[5] = "Assessment1/assessment.html";
+    pageArray[1] = "../CoreConcepts/IntroductionToAgents.html";
+    pageArray[2] = "../CoreConcepts/AgentCommunication.html";
+    pageArray[3] = "../CoreConcepts/Configuration.html";
+    pageArray[4] = "../CoreConcepts/AgentCustomization.html";
+    pageArray[5] = "../Assessment1/assessment.html";
 
     // Module 2: Advanced Orchestration
-    pageArray[6] = "AdvancedOrchestration/GroupChats.html";
-    pageArray[7] = "AdvancedOrchestration/HumanInTheLoop.html";
-    pageArray[8] = "AdvancedOrchestration/CodeExecution.html";
-    pageArray[9] = "AdvancedOrchestration/ErrorHandlingStrategies.html";
-    pageArray[10] = "Assessment2/assessment.html";
+    pageArray[6] = "../AdvancedOrchestration/GroupChats.html";
+    pageArray[7] = "../AdvancedOrchestration/HumanInTheLoop.html";
+    pageArray[8] = "../AdvancedOrchestration/CodeExecution.html";
+    pageArray[9] = "../AdvancedOrchestration/ErrorHandlingStrategies.html";
+    pageArray[10] = "../Assessment2/assessment.html";
 
     // Module 3: Integration & Patterns
-    pageArray[11] = "IntegrationPatterns/ToolUse.html";
-    pageArray[12] = "IntegrationPatterns/RAG.html";
-    pageArray[13] = "IntegrationPatterns/ProsCons.html";
-    pageArray[14] = "IntegrationPatterns/FutureOfAgents.html";
-    pageArray[15] = "Assessment3/assessment.html";
+    pageArray[11] = "../IntegrationPatterns/ToolUse.html";
+    pageArray[12] = "../IntegrationPatterns/RAG.html";
+    pageArray[13] = "../IntegrationPatterns/ProsCons.html";
+    pageArray[14] = "../IntegrationPatterns/FutureOfAgents.html";
+    pageArray[15] = "../Assessment3/assessment.html";
 
     // Final Comprehensive Assessment
-    pageArray[16] = "FinalAssessment/assessment.html";
+    pageArray[16] = "../FinalAssessment/assessment.html";
 
     var currentPage = null;
     var startTimeStamp = null;
@@ -277,6 +278,7 @@
         // Reset button states and styling
         prevButton.disabled = false;
         nextButton.disabled = false;
+        nextButton.style.display = "inline-block"; // Ensure visible
         prevButton.style.opacity = "1";
         nextButton.style.opacity = "1";
         prevButton.style.cursor = "pointer";
@@ -288,9 +290,7 @@
             prevButton.style.cursor = "not-allowed";
         }
         else if (currentPage == (pageArray.length - 1)){
-            nextButton.disabled = true;
-            nextButton.style.opacity = "0.5";
-            nextButton.style.cursor = "not-allowed";
+            nextButton.style.display = "none"; // Hide completely
             reachedEnd = true;
         }
     }
