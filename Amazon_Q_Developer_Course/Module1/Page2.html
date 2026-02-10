@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 1: Architecture & Technical Breakdown</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Module 1: Architecture & Technical Breakdown</h1>
+
+<div class="module-content">
+    <h2>Technical Breakdown</h2>
+    <p>Understanding how Amazon Q Developer functions behind the scenes is crucial for effective utilization and trust. It operates on a sophisticated architecture that combines client-side integration with powerful cloud-based AI models.</p>
+
+    <h3>Underlying Technology: Large Language Models (LLMs)</h3>
+    <p>At the heart of Amazon Q lies a foundation model trained on billions of lines of publicly available code (including Amazon's own open-source projects) and technical documentation. Unlike a simple text predictor, this LLM understands syntax, semantics, and idiomatic patterns across dozens of programming languages.</p>
+    <p>When a developer types code or a comment, the IDE plugin captures not just the current line but also the surrounding context—functions above and below, imported libraries, and even other open files in the project. This context is securely transmitted to the AWS cloud, where the model processes it to generate relevant suggestions.</p>
+
+    <h2>Security & Data Privacy</h2>
+    <p>Security is paramount when introducing AI into enterprise development workflows. Amazon Q Developer is built with a "security-first" architecture designed to protect intellectual property and sensitive data.</p>
+
+    <h3>Data Handling & Encryption</h3>
+    <ul>
+        <li><strong>Encryption in Transit:</strong> All communication between the IDE and the AWS service is encrypted using TLS (Transport Layer Security).</li>
+        <li><strong>Encryption at Rest:</strong> Customer content stored (if opted in for service improvement) is encrypted using AWS Key Management Service (KMS).</li>
+        <li><strong>No Training on Customer Code (Professional Tier):</strong> For enterprise users on the Amazon Q Developer Pro tier, AWS explicitly states that customer code is <strong>never used to train the foundation models</strong>. Code snippets are processed ephemerally solely to generate suggestions and are immediately discarded.</li>
+    </ul>
+
+    <h3>Reference Tracking & Open Source Compliance</h3>
+    <p>One of the unique technical features of Amazon Q is its reference tracking mechanism. Generative AI models can inadvertently reproduce code that closely resembles existing open-source code.</p>
+    <p>To mitigate legal risks:</p>
+    <ul>
+        <li><strong>Detection:</strong> If a generated suggestion matches code from a public repository, Amazon Q flags it.</li>
+        <li><strong>Attribution:</strong> It provides a reference to the source repository and the associated license (e.g., MIT, Apache 2.0).</li>
+        <li><strong>Filtering:</strong> Enterprise administrators can configure policies to automatically block suggestions that match public code, ensuring that only original or permissive code enters the codebase.</li>
+    </ul>
+
+    <h2>Real-World Example: Security Scanning</h2>
+    <p>Consider a scenario where a developer is writing a Python application that connects to a database. They might inadvertently hardcode credentials or use a vulnerable library function.</p>
+    <p>Amazon Q Developer's security scanning feature analyzes the code against a database of known vulnerabilities (CVEs) and best practices. It doesn't just flag the issue; it suggests a secure alternative, such as using AWS Secrets Manager for credentials or a parameterized query to prevent SQL injection. This proactive approach shifts security left, addressing potential threats during the coding phase rather than in later stages of the pipeline.</p>
+
+    <h2>Summary</h2>
+    <p>The architecture of Amazon Q balances the power of cloud-based AI with stringent enterprise security requirements. By leveraging context-aware LLMs while ensuring data privacy and compliance through features like reference tracking, it provides a safe and effective environment for AI-assisted development.</p>
+</div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

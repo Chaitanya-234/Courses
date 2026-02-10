@@ -189,21 +189,31 @@
         return String(val);
     }
 
-        var pageArray = new Array(6);
+    var pageArray = new Array(14);
 
     // Course Introduction
-    pageArray[0] = "Introduction/Introduction.html";
+    pageArray[0] = "../Introduction/Introduction.html";
 
-    // Getting Started with Amazon Q Developer
-    pageArray[1] = "GettingStarted/WhatIsQDev.html";
-    pageArray[2] = "GettingStarted/SetupConfig.html";
+    // Module 1: Getting Started
+    pageArray[1] = "../Module1/Page1.html";
+    pageArray[2] = "../Module1/Page2.html";
+    pageArray[3] = "../Module1/Page3.html";
+    pageArray[4] = "../Module1/assessment.html";
 
-    // Advanced Q Developer Features
-    pageArray[3] = "AdvancedFeatures/DevAgent.html";
-    pageArray[4] = "AdvancedFeatures/EnterpriseCustom.html";
+    // Module 2: Advanced Capabilities
+    pageArray[5] = "../Module2/Page1.html";
+    pageArray[6] = "../Module2/Page2.html";
+    pageArray[7] = "../Module2/Page3.html";
+    pageArray[8] = "../Module2/assessment.html";
+
+    // Module 3: Strategic Implementation
+    pageArray[9] = "../Module3/Page1.html";
+    pageArray[10] = "../Module3/Page2.html";
+    pageArray[11] = "../Module3/Page3.html";
+    pageArray[12] = "../Module3/assessment.html";
 
     // Final Comprehensive Assessment
-    pageArray[5] = "FinalAssessment/assessment.html"; // 25 unique questions
+    pageArray[13] = "../FinalAssessment/assessment.html";
 
     var currentPage = null;
     var startTimeStamp = null;
@@ -255,6 +265,7 @@
     }
 
     function goToPage(){
+        reachedEnd = false;
         var theIframe = document.getElementById("contentFrame");
         var prevButton = document.getElementById("butPrevious");
         var nextButton = document.getElementById("butNext");
@@ -268,6 +279,7 @@
         nextButton.style.opacity = "1";
         prevButton.style.cursor = "pointer";
         nextButton.style.cursor = "pointer";
+        nextButton.style.display = "inline-block";
 
         if (currentPage == 0){
             prevButton.disabled = true;
@@ -275,9 +287,7 @@
             prevButton.style.cursor = "not-allowed";
         }
         else if (currentPage == (pageArray.length - 1)){
-            nextButton.disabled = true;
-            nextButton.style.opacity = "0.5";
-            nextButton.style.cursor = "not-allowed";
+            nextButton.style.display = "none";
             reachedEnd = true;
         }
     }

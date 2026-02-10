@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <title>Module 2: Code Transformation & Modernization</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Module 2: Code Transformation & Modernization</h1>
+
+<div class="module-content">
+    <h2>The Challenge of Modernization</h2>
+    <p>Legacy code is a reality for almost every enterprise. Upgrading language versions (e.g., from Java 8 to Java 17) or migrating frameworks is typically a tedious, error-prone, and time-consuming process. It often involves updating thousands of files, fixing deprecated APIs, and rewriting unit tests.</p>
+
+    <h2>Amazon Q Code Transformation Agent</h2>
+    <p>The <strong>Amazon Q Code Transformation Agent</strong> (formerly known as the Java Upgrade Agent) automates this modernization process. It acts as a highly specialized engineer dedicated solely to technical debt reduction.</p>
+
+    <h3>How Transformation Works</h3>
+    <ol>
+        <li><strong>Analyze:</strong> The agent deeply analyzes your entire application, mapping dependencies, build configurations, and code patterns.</li>
+        <li><strong>Plan:</strong> It creates a transformation plan, identifying which libraries need to be upgraded and which code sections must change.</li>
+        <li><strong>Upgrade:</strong> It performs the upgrades automatically. This includes changing import statements, updating method signatures, replacing deprecated classes, and modifying build files (like <code>pom.xml</code> or <code>build.gradle</code>).</li>
+        <li><strong>Verify:</strong> It attempts to build the project and run existing tests to ensure the changes haven't broken functionality. If errors occur, it iterates to fix them.</li>
+        <li><strong>Report:</strong> Finally, it provides a detailed report of changes made, files touched, and any manual intervention required.</li>
+    </ol>
+
+    <h2>Supported Transformations</h2>
+    <p>As of now, the primary focus is on:</p>
+    <ul>
+        <li><strong>Java Upgrades:</strong> Upgrading applications from Java 8 or 11 to Java 17. This is critical for performance, security, and access to modern language features.</li>
+        <li><strong>.NET Migrations:</strong> Helping to port .NET Framework applications to cross-platform .NET (Core).</li>
+        <li><strong>SQL Conversions:</strong> (In specific contexts) Assisting with database schema migrations.</li>
+    </ul>
+
+    <h2>Security Scanning Integration</h2>
+    <p>Modernization isn't just about language versions; it's also about security. As mentioned in Module 1, Amazon Q includes built-in security scanning. During transformation or regular development, it:</p>
+    <ul>
+        <li><strong>Identifies Vulnerabilities:</strong> Detects common security flaws like SQL injection, cross-site scripting (XSS), and hardcoded secrets.</li>
+        <li><strong>Suggests Fixes:</strong> Instead of just flagging a line, it often provides a rewritten, secure version of the code block that you can apply with a single click.</li>
+        <li><strong>Context-Aware:</strong> The fixes are tailored to your specific framework and coding style.</li>
+    </ul>
+
+    <h2>Summary</h2>
+    <p>By automating the heavy lifting of upgrades and security patching, Amazon Q Developer allows teams to maintain modern, secure codebases without sacrificing feature development velocity. This capability transforms maintenance from a dreaded chore into a manageable background process.</p>
+</div>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

@@ -22,14 +22,28 @@
 	<resources>
 		<resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="shared/launchpage.html">
       <file href="Introduction/Introduction.html"/>
-      <file href="GettingStarted/WhatIsQDev.html"/>
-      <file href="GettingStarted/SetupConfig.html"/>
-      <file href="GettingStarted/questions.js"/>
-      <file href="AdvancedFeatures/DevAgent.html"/>
-      <file href="AdvancedFeatures/EnterpriseCustom.html"/>
-      <file href="AdvancedFeatures/questions.js"/>
+
+      <file href="Module1/Page1.html"/>
+      <file href="Module1/Page2.html"/>
+      <file href="Module1/Page3.html"/>
+      <file href="Module1/assessment.html"/>
+      <file href="Module1/questions.js"/>
+
+      <file href="Module2/Page1.html"/>
+      <file href="Module2/Page2.html"/>
+      <file href="Module2/Page3.html"/>
+      <file href="Module2/assessment.html"/>
+      <file href="Module2/questions.js"/>
+
+      <file href="Module3/Page1.html"/>
+      <file href="Module3/Page2.html"/>
+      <file href="Module3/Page3.html"/>
+      <file href="Module3/assessment.html"/>
+      <file href="Module3/questions.js"/>
+
       <file href="FinalAssessment/assessment.html"/>
       <file href="FinalAssessment/questions.js"/>
+
       <file href="shared/assessmenttemplate.html"/>
       <file href="shared/background.jpg"/>
       <file href="shared/cclicense.png"/>
