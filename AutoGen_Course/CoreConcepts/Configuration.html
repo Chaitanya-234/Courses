@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Configuration</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Agent Configuration Strategy</h1>
+
+<h2>The Configuration Dictionary</h2>
+<p>
+    Configuring agents in AutoGen is done primarily through Python dictionaries. This declarative approach allows you to separate the agent's behavior definition from the runtime logic.
+    The most critical configuration is the <code>llm_config</code>.
+</p>
+
+<h2>LLM Configuration (llm_config)</h2>
+<p>
+    The <code>llm_config</code> dictionary controls how the agent interacts with the Language Model backend. Key parameters include:
+</p>
+<ul>
+    <li><strong>config_list:</strong> A list of model configurations (API keys, endpoints, model names). This allows the agent to fallback to different models or rotate keys.</li>
+    <li><strong>temperature:</strong> Controls randomness (0.0 for deterministic code generation, higher for creative writing).</li>
+    <li><strong>timeout:</strong> How long to wait for an API response.</li>
+    <li><strong>cache_seed:</strong> Used for caching. If set (e.g., 42), identical requests will return cached responses, saving API costs during development. Set to <code>None</code> to disable.</li>
+</ul>
+
+<h3>The Config List Pattern</h3>
+<p>
+    AutoGen promotes using a list of configurations rather than a single hardcoded credential. This enhances resilience.
+    For example, you might define a preference order: "Try GPT-4; if it fails or rate limits, try GPT-3.5-Turbo."
+</p>
+<p>
+    <em>Enterprise Tip:</em> Never hardcode API keys in your code. Use environment variables (<code>OAI_CONFIG_LIST</code>) and helper functions like <code>config_list_from_json</code> to load them securely.
+</p>
+
+<h2>System Messages</h2>
+<p>
+    The <code>system_message</code> is the prompt that defines the agent's persona. It is the first message in the context sent to the LLM.
+    A well-crafted system message is crucial for performance.
+</p>
+<p>
+    <strong>Components of a Good System Message:</strong>
+</p>
+<ul>
+    <li><strong>Role Definition:</strong> "You are a senior python software engineer."</li>
+    <li><strong>Constraints:</strong> "Do not use external libraries. Only use standard library."</li>
+    <li><strong>Behavioral Instructions:</strong> "If the code fails, analyze the error and propose a fix. Do not apologize."</li>
+    <li><strong>Format Requirements:</strong> "Put all code in markdown code blocks."</li>
+</ul>
+<p>
+    For the <code>UserProxyAgent</code>, the system message is usually empty or minimal because it represents the human/executor, but for the <code>AssistantAgent</code>, it is the primary "programming" of the intelligence.
+</p>
+
+<h2>Code Execution Configuration</h2>
+<p>
+    Security is a major concern when agents generate and execute code. The <code>code_execution_config</code> dictionary manages this for the <code>UserProxyAgent</code>.
+</p>
+<ul>
+    <li><strong>work_dir:</strong> The directory where code files are written and executed. Essential for sandboxing file operations.</li>
+    <li><strong>use_docker:</strong> (Strongly Recommended) If set to the name of a Docker image (e.g., "python:3"), code runs inside a container. If <code>False</code>, code runs directly on the host machine (High Risk).</li>
+    <li><strong>last_n_messages:</strong> How far back in history to look for code blocks to execute. usually 'auto'.</li>
+</ul>
+
+<h2>Human Input Mode</h2>
+<p>
+    The <code>human_input_mode</code> parameter determines when the agent asks for human intervention.
+</p>
+<ul>
+    <li><strong>ALWAYS:</strong> The agent prompts for input after every auto-reply. Good for full control.</li>
+    <li><strong>TERMINATE:</strong> The agent only prompts for input when a termination condition is met or if the auto-reply loop decides to stop.</li>
+    <li><strong>NEVER:</strong> Fully autonomous. The agent will never ask for input and will rely on auto-replies until max turns or termination.</li>
+</ul>
+
+<h2>Summary</h2>
+<p>
+    Configuration is where the "Engineering" in "Prompt Engineering" happens.
+    By tuning <code>llm_config</code> for cost/performance, <code>code_execution_config</code> for security, and <code>system_message</code> for behavior,
+    you turn a generic LLM wrapper into a specialized, robust enterprise tool.
+</p>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Handling and Debugging Strategies</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Error Handling and Debugging Strategies</h1>
+
+<h2>The Challenge of Autonomy</h2>
+<p>
+    When agents run autonomously, errors are inevitable. APIs timeout, code execution fails, and LLMs sometimes hallucinate incorrect function calls.
+    Designing a robust agent system requires anticipating these failures.
+</p>
+
+<h2>Handling Code Execution Errors</h2>
+<p>
+    The most common failure mode is "Code Generation Failure". The Assistant writes Python code, but it has a syntax error or a runtime exception.
+</p>
+<p>
+    <strong>Self-Correction Loop:</strong>
+</p>
+<ul>
+    <li>Ideally, the <code>UserProxyAgent</code> executes the faulty code and returns the <strong>Traceback/Error Message</strong> to the Assistant.</li>
+    <li>The Assistant reads the error, understands what went wrong, and generates a corrected version.</li>
+    <li>This loop continues until the code runs successfully.</li>
+</ul>
+<p>
+    <strong>Configuration Tip:</strong> Ensure your <code>max_turns</code> is high enough (e.g., 10-20) to allow for 2-3 iterations of bug fixing. If set too low (e.g., 2), the agent will give up before fixing its mistake.
+</p>
+
+<h2>Handling API Failures (LLM Backend)</h2>
+<p>
+    OpenAI or Azure endpoints can be flaky.
+</p>
+<ul>
+    <li><strong>Retry Logic:</strong> AutoGen handles basic retries for 429 (Rate Limit) errors if configured correctly.</li>
+    <li><strong>Timeout:</strong> Set a reasonable timeout in <code>llm_config</code> (e.g., 60 seconds). If the model hangs, the request aborts.</li>
+    <li><strong>Fallback Models:</strong> As discussed in Module 1, use a <code>config_list</code>. If GPT-4 is down, fallback to GPT-3.5-Turbo or another provider automatically.</li>
+</ul>
+
+<h2>Debugging Group Chats</h2>
+<p>
+    Group chats are harder to debug because the state is distributed among many participants.
+</p>
+<p>
+    <strong>Logging:</strong>
+    Enable verbose logging. AutoGen prints every message exchange to the console. In production, redirect this to a structured log file.
+    Pay attention to the <code>role</code> (who sent it) and the <code>content</code>.
+</p>
+<p>
+    <strong>Common Group Chat Issues:</strong>
+</p>
+<ul>
+    <li><strong>Infinite Loops:</strong> Agents keep thanking each other. Fix: Add "TERMINATE" conditions.</li>
+    <li><strong>Wrong Speaker Selection:</strong> The Manager picks the wrong agent. Fix: Improve the <code>description</code> field of each agent so the Manager knows their role better.</li>
+    <li><strong>Context Overflow:</strong> The chat history gets too long. Fix: Use <code>max_round</code> or implement summarization strategies.</li>
+</ul>
+
+<h2>Robust Conversation Design</h2>
+<p>
+    Instead of one giant "do everything" chat, break complex workflows into smaller, deterministic steps.
+</p>
+<ul>
+    <li><strong>Step 1:</strong> Manager & Planner agree on a plan. (Output: Plan Text)</li>
+    <li><strong>Step 2:</strong> Engineer & Executor implement Step 1 of the plan. (Output: Code Result)</li>
+    <li><strong>Step 3:</strong> Reviewer checks the result.</li>
+</ul>
+<p>
+    This "Chain of Chats" pattern is more robust than a free-for-all group chat because you can validate the output of each stage before moving to the next.
+</p>
+
+<h2>Summary</h2>
+<p>
+    Building reliable agents is 20% prompt engineering and 80% systems engineering.
+    By implementing self-correction loops, robust error handling, and structured workflows, you turn fragile demos into resilient applications.
+</p>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

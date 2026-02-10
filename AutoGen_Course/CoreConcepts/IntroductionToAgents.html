@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction to Agents</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Introduction to Agents in AutoGen</h1>
+
+<h2>What is an AutoGen Agent?</h2>
+<p>
+    In the context of Microsoft AutoGen, an <strong>Agent</strong> is an entity that can act on behalf of a user or another system to achieve a goal.
+    Agents are the fundamental building blocks of the framework. Unlike traditional chatbots that are often stateless or single-turn, AutoGen agents are designed to be <strong>conversable</strong>,
+    meaning they can engage in multi-turn dialogues with other agents or humans to solve complex tasks collectively.
+</p>
+<p>
+    The power of AutoGen lies in its ability to orchestrate these agents into workflows. An agent isn't just a wrapper around a Large Language Model (LLM);
+    it is a component that combines LLM capabilities, human inputs, and tools (like code execution or web search) into a unified interface.
+</p>
+
+<h2>The ConversableAgent Class</h2>
+<p>
+    The core abstraction in AutoGen is the <code>ConversableAgent</code> class. This class provides the essential machinery for an agent to:
+</p>
+<ul>
+    <li><strong>Send and Receive Messages:</strong> It handles the message passing protocol between agents.</li>
+    <li><strong>Maintain Context:</strong> It keeps a history of the conversation, ensuring that the LLM has the necessary context to generate relevant responses.</li>
+    <li><strong>Generate Replies:</strong> It can generate responses using an LLM, a human user, or a registered tool/function.</li>
+</ul>
+
+<h2>Key Agent Types</h2>
+<p>While <code>ConversableAgent</code> is the base class, AutoGen provides two primary subclasses that are commonly used to build applications:</p>
+
+<h3>1. UserProxyAgent</h3>
+<p>
+    The <code>UserProxyAgent</code> is conceptually a proxy for the human user. It is typically responsible for:
+</p>
+<ul>
+    <li><strong>Executing Code:</strong> By default, it is configured to execute code blocks detected in the messages it receives. This allows the "assistant" to write code and the "user proxy" to run it and report the results.</li>
+    <li><strong>Soliciting Human Input:</strong> It can prompt the actual human user for input at various stages of the conversation, allowing for human-in-the-loop workflows.</li>
+    <li><strong>Triggering Conversation:</strong> It often initiates the chat with other agents.</li>
+</ul>
+
+<h3>2. AssistantAgent</h3>
+<p>
+    The <code>AssistantAgent</code> is designed to act as an AI assistant. It is typically configured with an LLM (like GPT-4) and a system message that defines its role.
+</p>
+<ul>
+    <li><strong>Writing Code and Plans:</strong> Its primary strength is generating Python code, shell scripts, or natural language plans to solve the user's problem.</li>
+    <li><strong>No Execution:</strong> By default, it does NOT execute code. It relies on the <code>UserProxyAgent</code> (or another executor) to run the code it generates.</li>
+</ul>
+
+<h2>How They Work Together</h2>
+<p>
+    A standard AutoGen workflow involves a <code>UserProxyAgent</code> and an <code>AssistantAgent</code> working in tandem.
+</p>
+<ol>
+    <li>The <strong>UserProxyAgent</strong> sends a task (e.g., "Plot a chart of stock prices").</li>
+    <li>The <strong>AssistantAgent</strong> receives the message, uses the LLM to generate Python code to fetch data and plot the chart, and sends this code back.</li>
+    <li>The <strong>UserProxyAgent</strong> receives the code, executes it (automatically or after approval), and sends the output (or error message) back to the Assistant.</li>
+    <li>The <strong>AssistantAgent</strong> analyzes the output. If it's an error, it writes a fix. If it's success, it concludes the task.</li>
+</ol>
+<p>
+    This back-and-forth loop continues until the task is completed or a termination condition is met. This pattern decouples <em>reasoning/coding</em> (Assistant) from <em>execution/permission</em> (UserProxy), which is a critical security and architectural pattern.
+</p>
+
+<h2>Beyond Two Agents</h2>
+<p>
+    While the User-Assistant pair is the simplest pattern, AutoGen supports complex topologies. Agents can be arranged in:
+</p>
+<ul>
+    <li><strong>Group Chats:</strong> Multiple agents (e.g., Coder, Reviewer, Manager) participate in a shared conversation.</li>
+    <li><strong>Hierarchies:</strong> Agents can call other agents as sub-routines.</li>
+</ul>
+
+<h2>Summary</h2>
+<p>
+    Understanding the distinction between the agent's <em>role</em> (Assistant vs. UserProxy) and its <em>capabilities</em> (LLM vs. Code Execution) is vital.
+    AutoGen's flexibility comes from being able to mix and match these capabilities to suit specific enterprise requirements, such as restricting code execution to a sandbox or enforcing human approval for sensitive actions.
+</p>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

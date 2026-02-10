@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Human-in-the-Loop Patterns</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Human-in-the-Loop Patterns</h1>
+
+<h2>Why Involve Humans?</h2>
+<p>
+    Despite the power of LLMs, fully autonomous agents can hallucinate, get stuck in loops, or make dangerous decisions.
+    <strong>Human-in-the-Loop (HITL)</strong> allows a human to act as a supervisor, guide, or final approver.
+</p>
+
+<h2>Input Modes</h2>
+<p>
+    As introduced in Module 1, the <code>human_input_mode</code> parameter on the <code>UserProxyAgent</code> controls when the human is solicited.
+</p>
+
+<h3>ALWAYS</h3>
+<p>
+    The agent pauses after <em>every</em> round and waits for human input. The human can:
+</p>
+<ul>
+    <li>Type feedback (which the agent sees as a message).</li>
+    <li>Press Enter to skip (approving the agent's action or letting the auto-reply loop continue).</li>
+    <li>Type "exit" to terminate.</li>
+</ul>
+<p>
+    <em>Use Case:</em> Debugging, high-stakes operations, or teaching the agent.
+</p>
+
+<h3>TERMINATE</h3>
+<p>
+    The agent runs autonomously until it encounters a termination condition (e.g., receives "TERMINATE" or reaches max turns).
+    At that point, it asks the human for input. The human can effectively "revive" the conversation by giving new instructions, or confirm the end.
+</p>
+<p>
+    <em>Use Case:</em> General assistance where the agent should try to solve the task first.
+</p>
+
+<h3>NEVER</h3>
+<p>
+    The agent never asks. If it gets stuck, it fails or loops.
+</p>
+<p>
+    <em>Use Case:</em> fully automated background jobs.
+</p>
+
+<h2>Steering the Conversation</h2>
+<p>
+    When the human provides input, it overrides the auto-reply.
+    For example, if an Assistant writes code and the UserProxyAgent is in `ALWAYS` mode:
+</p>
+<ol>
+    <li>Assistant sends code.</li>
+    <li>UserProxy prompts human: "Assistant sent code. Run it? (Press Enter) or type feedback."</li>
+    <li>Human types: "Wait, check for edge cases first."</li>
+    <li>UserProxy sends "Wait, check for edge cases first" to Assistant.</li>
+    <li>Assistant generates a new response based on feedback instead of the code execution result.</li>
+</ol>
+<p>
+    This allows the human to steer the logic before any action is taken.
+</p>
+
+<h2>Custom Input Functions</h2>
+<p>
+    For enterprise integration, you might not want to use the console `input()`. You can override the <code>get_human_input</code> method to fetch input from a web UI, a Slack channel, or an approval workflow API.
+</p>
+
+<h2>Summary</h2>
+<p>
+    HITL is not just a safety feature; it's a collaboration feature. It turns the agent from a black box into a co-pilot that works <em>with</em> you.
+</p>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>

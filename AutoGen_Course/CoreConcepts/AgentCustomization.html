@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Customization and Extension</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+	<script src="../shared/scormfunctions.js" type="text/javascript"></script>
+	<script src="../shared/contentfunctions.js" type="text/javascript"></script>
+</head>
+<body>
+<h1>Agent Customization and Extension</h1>
+
+<h2>Beyond Standard Agents</h2>
+<p>
+    While <code>UserProxyAgent</code> and <code>AssistantAgent</code> cover 80% of use cases, enterprise applications often require specialized behaviors.
+    AutoGen is designed to be highly extensible through two primary mechanisms: <strong>Subclassing</strong> and <strong>Reply Function Registration</strong>.
+</p>
+
+<h2>The Register Reply Pattern</h2>
+<p>
+    Every conversable agent has a list of "reply functions" that are checked sequentially when a message is received.
+    Instead of subclassing, you can dynamically inject custom logic into an existing agent instance using <code>register_reply</code>.
+</p>
+<p>
+    <strong>How it works:</strong>
+</p>
+<ol>
+    <li>You define a Python function that takes the current conversation messages as input.</li>
+    <li>It returns a tuple: <code>(StopIteration, Reply)</code>.</li>
+    <li>If <code>StopIteration</code> is True, the agent uses your reply and stops checking other functions (including the LLM).</li>
+    <li>If False, it continues down the chain.</li>
+</ol>
+<p>
+    <em>Use Case:</em> Hardcoding responses for specific safety keywords. For example, if a user asks about "competitor pricing", you can register a function that intercepts this and returns "I cannot discuss competitor pricing" without ever calling the LLM API.
+</p>
+
+<h2>Subclassing ConversableAgent</h2>
+<p>
+    For more fundamental changes, you should create a new class inheriting from <code>ConversableAgent</code>.
+    This allows you to encapsulate state and complex logic.
+</p>
+<p>
+    <strong>Common Overrides:</strong>
+</p>
+<ul>
+    <li><strong>__init__:</strong> Set up custom internal state, database connections, or API clients.</li>
+    <li><strong>receive:</strong> Intercept every incoming message before it is processed. Useful for logging or auditing.</li>
+    <li><strong>generate_reply:</strong> (Though usually better to use `register_reply`) The core logic for generating a response.</li>
+</ul>
+
+<h2>Customizing the "Thought Process"</h2>
+<p>
+    Standard agents use a "System Message" to define their persona. However, advanced customization involves altering the prompt structure itself.
+</p>
+<ul>
+    <li><strong>Dynamic System Messages:</strong> You can change the system message at runtime based on the conversation state.</li>
+    <li><strong>Prompt Templates:</strong> Instead of raw strings, use Jinja2 templates to inject context-specific data into the prompt before every turn.</li>
+</ul>
+
+<h2>Adding "Memory"</h2>
+<p>
+    By default, AutoGen agents have short-term memory (the context window). Creating a custom agent is the standard way to add <strong>Long-Term Memory</strong>.
+</p>
+<p>
+    You might subclass <code>AssistantAgent</code> to create a <code>PersistentMemoryAgent</code>.
+    In its reply generation logic, it would:
+    1. Query a vector database for relevant past conversations.
+    2. Inject those summaries into the context.
+    3. Call the LLM.
+    4. Save the new interaction back to the database.
+</p>
+
+<h2>Summary</h2>
+<p>
+    Customization is the bridge between a "demo" and a "product".
+    By wrapping your business logic, compliance rules, and proprietary data access patterns into custom agent classes, you build a library of reusable, safe, and intelligent components.
+</p>
+
+<script type="text/javascript">
+</script>
+</body>
+</html>
