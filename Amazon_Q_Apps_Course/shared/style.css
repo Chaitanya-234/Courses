@@ -346,3 +346,28 @@ input[type="button"]:active, input[type="submit"]:active {
 		margin: 0.5rem 0;
 	}
 }
+/* Enhanced Content Blocks */
+.diagram-suggestion {
+    background: #fffaf5;
+    border: 2px dashed #F16F00;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    color: #2d3748;
+}
+.diagram-suggestion strong {
+    color: #F16F00;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.summary-box, .takeaway-box {
+    background: #fef7f0;
+    border-left: 5px solid #F16F00;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    border-radius: 0 12px 12px 0;
+}
+.summary-box h3, .takeaway-box h3 {
+    margin-top: 0;
+    color: #F16F00;
+}
