@@ -1,0 +1,72 @@
+<?xml version="1.0" standalone="no" ?>
+<manifest identifier="Placement_Exam_Aptitude_Course_Manifest" version="1.2"
+          xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd
+                              http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd
+                              http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+
+  <metadata>
+    <schema>ADL SCORM</schema>
+    <schemaversion>1.2</schemaversion>
+  </metadata>
+
+  <organizations default="Placement_Exam_Aptitude_Course_Org">
+    <organization identifier="Placement_Exam_Aptitude_Course_Org">
+      <title>Placement Exam Aptitude Course</title>
+      <item identifier="item_1" identifierref="resource_1">
+        <title>Placement Exam Aptitude Course</title>
+      </item>
+    </organization>
+  </organizations>
+
+  <resources>
+    <resource identifier="resource_1" type="webcontent" adlcp:scormtype="sco" href="shared/launchpage.html">
+      <file href="shared/launchpage.html"/>
+      <file href="shared/scormfunctions.js"/>
+      <file href="shared/assessmenttemplate.html"/>
+      <file href="shared/style.css"/>
+      <file href="Introduction/Introduction.html"/>
+      <file href="ProsCons/ProsCons.html"/>
+      <file href="Module1/Page1.html"/>
+      <file href="Module1/Page2.html"/>
+      <file href="Module1/Page3.html"/>
+      <file href="Module1/Page4.html"/>
+      <file href="Module1/Page5.html"/>
+      <file href="Module1/Page6.html"/>
+      <file href="Module1/Page7.html"/>
+      <file href="Module1/Page8.html"/>
+      <file href="Module1/Page9.html"/>
+      <file href="Module1/Page10.html"/>
+      <file href="Module1/assessment.html"/>
+      <file href="Module1/questions.js"/>
+      <file href="Module2/Page1.html"/>
+      <file href="Module2/Page2.html"/>
+      <file href="Module2/Page3.html"/>
+      <file href="Module2/Page4.html"/>
+      <file href="Module2/Page5.html"/>
+      <file href="Module2/Page6.html"/>
+      <file href="Module2/Page7.html"/>
+      <file href="Module2/Page8.html"/>
+      <file href="Module2/Page9.html"/>
+      <file href="Module2/Page10.html"/>
+      <file href="Module2/assessment.html"/>
+      <file href="Module2/questions.js"/>
+      <file href="Module3/Page1.html"/>
+      <file href="Module3/Page2.html"/>
+      <file href="Module3/Page3.html"/>
+      <file href="Module3/Page4.html"/>
+      <file href="Module3/Page5.html"/>
+      <file href="Module3/Page6.html"/>
+      <file href="Module3/Page7.html"/>
+      <file href="Module3/Page8.html"/>
+      <file href="Module3/Page9.html"/>
+      <file href="Module3/Page10.html"/>
+      <file href="Module3/assessment.html"/>
+      <file href="Module3/questions.js"/>
+      <file href="FinalAssessment/assessment.html"/>
+      <file href="FinalAssessment/questions.js"/>
+    </resource>
+  </resources>
+</manifest>
