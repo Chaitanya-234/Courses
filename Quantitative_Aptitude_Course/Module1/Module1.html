@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 1: Basic Arithmetic & Number System</title>
+    <style type="text/css" media="screen">
+		@import url( ../shared/style.css );
+	</style>
+</head>
+<body>
+<h1>Module 1: Basic Arithmetic & Number System</h1>
+
+<div class="module-content">
+    <h2>Module Overview and Learning Objectives</h2>
+    <p>This foundational module establishes the essential mathematical concepts and computational techniques that underpin all quantitative aptitude. By the end of this module, you will be able to:</p>
+    <ul>
+        <li>Classify numbers into different types and understand their properties</li>
+        <li>Apply divisibility rules to quickly determine factors without division</li>
+        <li>Calculate LCM and HCF using multiple methods efficiently</li>
+        <li>Understand cyclicity patterns in number operations</li>
+        <li>Perform simplification and approximation using BODMAS systematically</li>
+        <li>Manipulate surds, indices, and logarithms with confidence</li>
+    </ul>
+
+    <h2>1.1 Number System: Foundation of Mathematics</h2>
+    <p>The number system is the fundamental framework through which we represent and manipulate quantities. Understanding different types of numbers and their properties is essential for all mathematical operations and problem-solving.</p>
+
+    <h3>Types of Numbers</h3>
+    <p><strong>Natural Numbers (N):</strong> The counting numbers starting from 1: {1, 2, 3, 4, 5, ...}. These are the most intuitive numbers, representing discrete quantities in the real world. Natural numbers are always positive and do not include zero or fractions.</p>
+
+    <p><strong>Whole Numbers (W):</strong> Natural numbers including zero: {0, 1, 2, 3, 4, ...}. The addition of zero extends the number system to represent the absence of quantity, crucial for many mathematical operations and real-world applications.</p>
+
+    <p><strong>Integers (Z):</strong> Whole numbers and their negative counterparts: {..., -3, -2, -1, 0, 1, 2, 3, ...}. Integers allow representation of opposites (debt vs. credit, below vs. above zero) and enable subtraction to always produce a result within the system.</p>
+
+    <p><strong>Rational Numbers (Q):</strong> Numbers expressible as p/q where p and q are integers and q ≠ 0. Examples include 1/2, -3/4, 5 (which is 5/1), 0.75 (which is 3/4). Rational numbers have either terminating decimal representations (like 0.5) or repeating decimal patterns (like 0.333...).</p>
+
+    <p><strong>Irrational Numbers:</strong> Numbers that cannot be expressed as simple fractions, having non-terminating, non-repeating decimal expansions. Famous examples include √2 (approximately 1.414213...), π (approximately 3.141592...), and e (approximately 2.718281...). These numbers are essential in geometry, trigonometry, and advanced mathematics.</p>
+
+    <p><strong>Real Numbers (R):</strong> The union of rational and irrational numbers, representing all points on the number line. Real numbers encompass virtually all numbers encountered in practical applications.</p>
+
+    <h3>Prime and Composite Numbers</h3>
+    <p><strong>Prime Numbers:</strong> Natural numbers greater than 1 that have exactly two distinct factors: 1 and the number itself. The first few primes are: 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47... Note that 2 is the only even prime number; all other primes are odd.</p>
+
+    <p>Prime numbers are the "building blocks" of all natural numbers through the Fundamental Theorem of Arithmetic, which states that every integer greater than 1 can be expressed uniquely as a product of prime numbers (ignoring order). For example: 60 = 2² × 3 × 5.</p>
+
+    <p><strong>Composite Numbers:</strong> Natural numbers greater than 1 that have more than two factors. Examples include 4, 6, 8, 9, 10, 12, 14, 15, 16, 18, 20... Every composite number can be factored into primes.</p>
+
+    <p><strong>Special Cases:</strong> The number 1 is neither prime nor composite—it is called a unit. The number 0 is neither prime nor composite.</p>
+
+    <h2>1.2 LCM and HCF: Essential Concepts</h2>
+    <p>Least Common Multiple (LCM) and Highest Common Factor (HCF, also called GCD - Greatest Common Divisor) are fundamental concepts with wide-ranging applications in problem-solving.</p>
+
+    <h3>Highest Common Factor (HCF)</h3>
+    <p>The HCF of two or more numbers is the largest number that divides all of them without leaving a remainder. For example, HCF(12, 18) = 6 because 6 is the largest number that divides both 12 and 18.</p>
+
+    <p><strong>Methods to Find HCF:</strong></p>
+    <ul>
+        <li><strong>Prime Factorization Method:</strong> Express each number as a product of primes, then multiply the common prime factors with their lowest powers. Example: HCF(36, 60) → 36 = 2² × 3², 60 = 2² × 3 × 5 → HCF = 2² × 3 = 12.</li>
+        <li><strong>Division Method (Euclidean Algorithm):</strong> Divide the larger number by the smaller, then divide the previous divisor by the remainder, continuing until remainder is zero. The last divisor is the HCF. This method is particularly efficient for large numbers.</li>
+        <li><strong>Listing Factors Method:</strong> List all factors of each number and identify the largest common factor. Practical for small numbers but inefficient for large ones.</li>
+    </ul>
+
+    <h3>Least Common Multiple (LCM)</h3>
+    <p>The LCM of two or more numbers is the smallest number that is divisible by all of them. For example, LCM(4, 6) = 12 because 12 is the smallest number divisible by both 4 and 6.</p>
+
+    <p><strong>Methods to Find LCM:</strong></p>
+    <ul>
+        <li><strong>Prime Factorization Method:</strong> Express each number as a product of primes, then multiply all prime factors with their highest powers. Example: LCM(12, 18) → 12 = 2² × 3, 18 = 2 × 3² → LCM = 2² × 3² = 36.</li>
+        <li><strong>Division Method:</strong> Arrange numbers in a row, divide by common prime factors, bring down undivided numbers, continue until all numbers become 1. Multiply all divisors to get LCM.</li>
+        <li><strong>Formula Method:</strong> For two numbers a and b: LCM(a,b) × HCF(a,b) = a × b. This relationship is extremely useful for quick calculations.</li>
+    </ul>
+
+    <h3>Applications</h3>
+    <p>LCM and HCF appear in numerous problem types: finding when events coincide (LCM), dividing quantities into equal parts (HCF), simplifying fractions (HCF), and solving time-based problems (LCM).</p>
+
+    <h2>1.3 Divisibility Rules: Quick Factor Identification</h2>
+    <p>Divisibility rules allow rapid determination of whether a number is divisible by another without performing actual division—a crucial time-saving technique in competitive examinations.</p>
+
+    <p><strong>Divisibility by 2:</strong> A number is divisible by 2 if its last digit is even (0, 2, 4, 6, 8). Example: 1,234 is divisible by 2 because it ends in 4.</p>
+
+    <p><strong>Divisibility by 3:</strong> A number is divisible by 3 if the sum of its digits is divisible by 3. Example: 1,236 → 1+2+3+6 = 12, and 12 is divisible by 3, so 1,236 is divisible by 3.</p>
+
+    <p><strong>Divisibility by 4:</strong> A number is divisible by 4 if its last two digits form a number divisible by 4. Example: 1,316 → 16 is divisible by 4, so 1,316 is divisible by 4.</p>
+
+    <p><strong>Divisibility by 5:</strong> A number is divisible by 5 if its last digit is 0 or 5. Example: 1,235 and 1,230 are both divisible by 5.</p>
+
+    <p><strong>Divisibility by 6:</strong> A number is divisible by 6 if it is divisible by both 2 and 3. Example: 1,236 is even (divisible by 2) and digit sum is 12 (divisible by 3), so it's divisible by 6.</p>
+
+    <p><strong>Divisibility by 8:</strong> A number is divisible by 8 if its last three digits form a number divisible by 8. Example: 1,024 → 024 = 24, and 24 is divisible by 8.</p>
+
+    <p><strong>Divisibility by 9:</strong> A number is divisible by 9 if the sum of its digits is divisible by 9. Example: 1,233 → 1+2+3+3 = 9, which is divisible by 9.</p>
+
+    <p><strong>Divisibility by 10:</strong> A number is divisible by 10 if its last digit is 0. Example: 1,230 is divisible by 10.</p>
+
+    <p><strong>Divisibility by 11:</strong> A number is divisible by 11 if the difference between the sum of digits at odd positions and the sum of digits at even positions is either 0 or divisible by 11. Example: 1,331 → (1+3) - (3+1) = 0, so it's divisible by 11.</p>
+
+    <h2>1.4 Remainders, Factors, and Cyclicity</h2>
+    <h3>Remainder Concepts</h3>
+    <p>When a number a is divided by b, we can express it as: a = bq + r, where q is the quotient and r is the remainder (0 ≤ r < b). Understanding remainder patterns is crucial for solving modular arithmetic problems.</p>
+
+    <p><strong>Remainder Theorems:</strong> If a number leaves remainder r₁ when divided by d₁ and remainder r₂ when divided by d₂, specific patterns emerge that help solve complex remainder problems efficiently.</p>
+
+    <h3>Cyclicity of Numbers</h3>
+    <p>Cyclicity refers to the repeating pattern in the unit digits of powers of a number. This concept is essential for quickly determining the last digit of large exponential expressions.</p>
+
+    <p><strong>Cyclicity Patterns:</strong></p>
+    <ul>
+        <li><strong>Numbers ending in 0, 1, 5, 6:</strong> Always end in the same digit regardless of power. Example: 5¹ = 5, 5² = 25, 5³ = 125 (all end in 5).</li>
+        <li><strong>Numbers ending in 2:</strong> Cycle of 4 → {2, 4, 8, 6}. Example: 2¹ = 2, 2² = 4, 2³ = 8, 2⁴ = 16, 2⁵ = 32...</li>
+        <li><strong>Numbers ending in 3:</strong> Cycle of 4 → {3, 9, 7, 1}.</li>
+        <li><strong>Numbers ending in 4:</strong> Cycle of 2 → {4, 6}.</li>
+        <li><strong>Numbers ending in 7:</strong> Cycle of 4 → {7, 9, 3, 1}.</li>
+        <li><strong>Numbers ending in 8:</strong> Cycle of 4 → {8, 4, 2, 6}.</li>
+        <li><strong>Numbers ending in 9:</strong> Cycle of 2 → {9, 1}.</li>
+    </ul>
+
+    <p>To find the last digit of a^n, divide n by the cyclicity length and use the remainder to determine position in the cycle.</p>
+
+    <h2>1.5 Simplification and Approximation</h2>
+    <p>Simplification involves reducing complex expressions to simpler forms, while approximation involves estimating values to make calculations manageable—both essential skills for time-constrained problem-solving.</p>
+
+    <h3>BODMAS Rule</h3>
+    <p>BODMAS (or PEMDAS) defines the order of operations in mathematical expressions:</p>
+    <ul>
+        <li><strong>B</strong>rackets (Parentheses) - Solve innermost brackets first</li>
+        <li><strong>O</strong>rders (Exponents/Powers) - Calculate powers and roots</li>
+        <li><strong>D</strong>ivision and <strong>M</strong>ultiplication - Perform from left to right</li>
+        <li><strong>A</strong>ddition and <strong>S</strong>ubtraction - Perform from left to right</li>
+    </ul>
+
+    <p>Example: 3 + 4 × 2² - 6 ÷ 3 = 3 + 4 × 4 - 6 ÷ 3 = 3 + 16 - 2 = 17</p>
+
+    <h3>Approximation Techniques</h3>
+    <p>Approximation involves rounding numbers to make calculations easier while maintaining reasonable accuracy. Common techniques include:</p>
+    <ul>
+        <li>Rounding to nearest 10, 100, or 1000</li>
+        <li>Using significant figures</li>
+        <li>Estimating products and quotients</li>
+        <li>Recognizing when exact calculation is unnecessary</li>
+    </ul>
+
+    <h2>1.6 Surds and Indices</h2>
+    <h3>Surds</h3>
+    <p>A surd is an irrational root that cannot be simplified to a rational number. Examples include √2, √3, ∛5. Surds are exact representations, unlike decimal approximations.</p>
+
+    <p><strong>Operations with Surds:</strong></p>
+    <ul>
+        <li>√a × √b = √(ab)</li>
+        <li>√a ÷ √b = √(a/b)</li>
+        <li>√a + √b cannot be simplified unless a = b</li>
+        <li>Rationalization: Eliminating surds from denominators by multiplying by conjugates</li>
+    </ul>
+
+    <h3>Indices (Exponents)</h3>
+    <p>Indices represent repeated multiplication. Key laws of indices:</p>
+    <ul>
+        <li>a^m × a^n = a^(m+n)</li>
+        <li>a^m ÷ a^n = a^(m-n)</li>
+        <li>(a^m)^n = a^(mn)</li>
+        <li>a^0 = 1 (for a ≠ 0)</li>
+        <li>a^(-n) = 1/a^n</li>
+        <li>a^(1/n) = ⁿ√a</li>
+        <li>(ab)^n = a^n × b^n</li>
+    </ul>
+
+    <h2>1.7 Logarithms: Basic Concepts</h2>
+    <p>A logarithm answers the question: "To what power must we raise a base to get a certain number?" If a^x = b, then log_a(b) = x.</p>
+
+    <p><strong>Fundamental Properties:</strong></p>
+    <ul>
+        <li>log_a(mn) = log_a(m) + log_a(n)</li>
+        <li>log_a(m/n) = log_a(m) - log_a(n)</li>
+        <li>log_a(m^n) = n × log_a(m)</li>
+        <li>log_a(a) = 1</li>
+        <li>log_a(1) = 0</li>
+        <li>Change of base: log_a(b) = log_c(b) / log_c(a)</li>
+    </ul>
+
+    <p>Common logarithms (base 10) and natural logarithms (base e) are most frequently encountered in applications.</p>
+
+    <div class="diagram-suggestion">
+        <strong>[Diagram Suggestion: Number System Hierarchy]</strong>
+        <p>A nested diagram showing: Real Numbers containing Rational Numbers (which contain Integers, which contain Whole Numbers, which contain Natural Numbers) and Irrational Numbers as a separate branch.</p>
+    </div>
+
+    <h2>1.8 Summary and Key Takeaways</h2>
+    <p>In this module, we have established the fundamental mathematical concepts that underpin all quantitative aptitude.</p>
+    
+    <h3>Critical Concepts to Remember:</h3>
+    <ul>
+        <li><strong>Number System</strong> provides the framework for all mathematical operations, with different number types serving specific purposes.</li>
+        <li><strong>Prime Numbers</strong> are the building blocks of all natural numbers through unique prime factorization.</li>
+        <li><strong>LCM and HCF</strong> are interconnected concepts with the relationship: LCM × HCF = Product of numbers (for two numbers).</li>
+        <li><strong>Divisibility Rules</strong> enable rapid factor identification without actual division, saving crucial time in examinations.</li>
+        <li><strong>Cyclicity</strong> patterns allow quick determination of unit digits in large exponential expressions.</li>
+        <li><strong>BODMAS</strong> ensures consistent order of operations in complex expressions.</li>
+        <li><strong>Surds and Indices</strong> follow specific laws that enable simplification and manipulation of expressions.</li>
+        <li><strong>Logarithms</strong> convert multiplication into addition, making complex calculations manageable.</li>
+    </ul>
+
+    <div class="takeaway-box">
+        <h3>Ready to Test Your Knowledge?</h3>
+        <p>You have completed Module 1. Proceed to the next page for the Module 1 Assessment. You must score at least 70% to move on to Module 2. The assessment will test your understanding of number systems, LCM/HCF, divisibility rules, BODMAS, surds, indices, and logarithms.</p>
+    </div>
+</div>
+
+</body>
+</html>
